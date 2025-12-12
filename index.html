@@ -1,0 +1,4170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS AI | Revolutionary Enterprise Intelligence Solutions</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='logoGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F5D4'/%3E%3Cstop offset='50%25' style='stop-color:%237B61FF'/%3E%3Cstop offset='100%25' style='stop-color:%23FF6B6B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='8' fill='url(%23logoGrad)'/%3E%3Ccircle cx='40' cy='15' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='65' cy='40' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='40' cy='65' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='15' cy='40' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Cline x1='40' y1='32' x2='40' y2='19' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='48' y1='40' x2='61' y2='40' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='40' y1='48' x2='40' y2='61' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='32' y1='40' x2='19' y2='40' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Ccircle cx='40' cy='40' r='32' stroke='url(%23logoGrad)' stroke-width='1' fill='none' opacity='0.3'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #00F5D4;
+            --accent: #7B61FF;
+            --coral: #FF6B6B;
+            --emerald: #00D9A5;
+            --blue: #00B4D8;
+            --gold: #FFD700;
+            --bg-dark: #0A0A0F;
+            --bg-darker: #050508;
+            --bg-card: rgba(20,20,30,0.95);
+            --bg-glass: rgba(255,255,255,0.03);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255,255,255,0.75);
+            --text-muted: rgba(255,255,255,0.45);
+            --gradient-primary: linear-gradient(135deg, #00F5D4 0%, #7B61FF 50%, #FF6B6B 100%);
+            --gradient-mesh: radial-gradient(at 20% 30%, rgba(0,245,212,0.2) 0px, transparent 50%),
+                             radial-gradient(at 80% 20%, rgba(123,97,255,0.15) 0px, transparent 50%),
+                             radial-gradient(at 40% 70%, rgba(255,107,107,0.1) 0px, transparent 50%);
+            --border-glass: rgba(255,255,255,0.08);
+            --shadow-glow: 0 0 60px rgba(0,245,212,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Performance optimizations */
+        .service-card,
+        .benefit-card,
+        .hero-feature,
+        .feature-card,
+        .btn,
+        .modal-container {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: var(--bg-darker);
+            overflow: hidden;
+        }
+
+        .bg-gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            top: 20%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--coral) 0%, transparent 70%);
+            bottom: -250px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(100px, -100px) scale(1.1);
+            }
+            66% {
+                transform: translate(-100px, 50px) scale(0.9);
+            }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0,245,212,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,245,212,0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-darker);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .preloader-content {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .preloader-ring {
+            position: absolute;
+            inset: 0;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        .preloader-ring:nth-child(1) {
+            border-top-color: var(--primary);
+            animation-duration: 1.5s;
+        }
+
+        .preloader-ring:nth-child(2) {
+            border-right-color: var(--accent);
+            animation-duration: 2s;
+            animation-direction: reverse;
+        }
+
+        .preloader-ring:nth-child(3) {
+            border-bottom-color: var(--coral);
+            animation-duration: 2.5s;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .preloader-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            animation: pulseRotate 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseRotate {
+            0%, 100% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: translate(-50%, -50%) scale(1.1) rotate(180deg); 
+            }
+        }
+
+        .preloader-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .preloader-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Canvas */
+        #hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 25px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(30px);
+            background: rgba(10,10,15,0.7);
+            border-bottom: 1px solid var(--border-glass);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 80px;
+            background: rgba(10,10,15,0.95);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,245,212,0.05);
+            border-radius: 14px;
+            border: 1px solid rgba(0,245,212,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: radial-gradient(circle, rgba(0,245,212,0.15), rgba(123,97,255,0.1), transparent);
+            border-radius: 16px;
+            opacity: 0;
+            filter: blur(15px);
+            transition: opacity 0.4s ease;
+        }
+
+        .logo:hover .logo-icon {
+            background: rgba(0,245,212,0.08);
+            border-color: rgba(0,245,212,0.3);
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .logo-icon::before {
+            opacity: 1;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .logo-text span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-text::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-left: -6px;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(0,245,212,0.1);
+            border-color: var(--primary);
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10,10,15,0.98), rgba(15,10,20,0.98));
+            backdrop-filter: blur(30px);
+            z-index: 999;
+            padding: 100px 40px 40px;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 50px rgba(0,0,0,0.5);
+            border-left: 1px solid var(--border-glass);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0,245,212,0.05), transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(123,97,255,0.05), transparent 50%);
+            pointer-events: none;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .mobile-nav-links li {
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 20px 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .mobile-nav-links a::before {
+            content: '→';
+            position: absolute;
+            left: -25px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a:active {
+            color: var(--text-primary);
+            padding-left: 15px;
+        }
+
+        .mobile-nav-links a:hover::before,
+        .mobile-nav-links a:active::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .mobile-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px rgba(0,245,212,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(0,245,212,0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-glass);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0,245,212,0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 150px 80px 100px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 30px;
+            background: rgba(0,245,212,0.1);
+            border: 1px solid rgba(0,245,212,0.3);
+            border-radius: 50px;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-pulse {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: badgePulse 2s infinite;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero h1 .gradient-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.9;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 100px;
+        }
+
+        .btn-lg {
+            padding: 20px 45px;
+            font-size: 1.05rem;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-feature {
+            padding: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .hero-feature:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hero-feature:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0,245,212,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .hero-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-feature h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-feature p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Sections */
+        section {
+            padding: 140px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 100px;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            position: relative;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-gradient, var(--gradient-primary));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            transform-origin: left;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(0,245,212,0.1) 0%,
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0,245,212,0.3);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,245,212,0.2);
+        }
+
+        .service-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 30px;
+            border-radius: 25px;
+            background: var(--icon-bg, rgba(0,245,212,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .service-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: var(--card-gradient, var(--gradient-primary));
+            border-radius: 27px;
+            opacity: 0;
+            filter: blur(15px);
+            transition: opacity 0.5s ease;
+        }
+
+        .service-card:hover .service-icon-wrapper::before {
+            opacity: 0.6;
+        }
+
+        .service-card:hover .service-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon-wrapper svg {
+            width: 55px;
+            height: 55px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--badge-bg, var(--gradient-primary));
+            color: var(--bg-dark);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-tagline {
+            color: var(--tagline-color, var(--primary));
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .service-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--icon-bg, rgba(0,245,212,0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .service-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--cta-color, var(--primary));
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .service-cta-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--cta-bg, rgba(0,245,212,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-cta-arrow {
+            transform: translateX(8px);
+            background: var(--cta-color, var(--primary));
+            color: var(--bg-dark);
+        }
+
+        /* Color Schemes for Services */
+        .service-card[data-service="docusynth"] {
+            --card-gradient: linear-gradient(135deg, #00F5D4, #00A896);
+            --icon-bg: rgba(0,245,212,0.15);
+            --tagline-color: #00F5D4;
+            --cta-color: #00F5D4;
+            --cta-bg: rgba(0,245,212,0.1);
+            --badge-bg: linear-gradient(135deg, #00F5D4, #00A896);
+        }
+
+        .service-card[data-service="assetvault"] {
+            --card-gradient: linear-gradient(135deg, #7B61FF, #5B41DF);
+            --icon-bg: rgba(123,97,255,0.15);
+            --tagline-color: #7B61FF;
+            --cta-color: #7B61FF;
+            --cta-bg: rgba(123,97,255,0.1);
+            --badge-bg: linear-gradient(135deg, #7B61FF, #5B41DF);
+        }
+
+        .service-card[data-service="ecosense"] {
+            --card-gradient: linear-gradient(135deg, #00D9A5, #00B388);
+            --icon-bg: rgba(0,217,165,0.15);
+            --tagline-color: #00D9A5;
+            --cta-color: #00D9A5;
+            --cta-bg: rgba(0,217,165,0.1);
+            --badge-bg: linear-gradient(135deg, #00D9A5, #00B388);
+        }
+
+        .service-card[data-service="marketmind"] {
+            --card-gradient: linear-gradient(135deg, #FF6B6B, #EE5A5A);
+            --icon-bg: rgba(255,107,107,0.15);
+            --tagline-color: #FF6B6B;
+            --cta-color: #FF6B6B;
+            --cta-bg: rgba(255,107,107,0.1);
+            --badge-bg: linear-gradient(135deg, #FF6B6B, #EE5A5A);
+        }
+
+        .service-card[data-service="designforge"] {
+            --card-gradient: linear-gradient(135deg, #FFD700, #FFA500);
+            --icon-bg: rgba(255,215,0,0.15);
+            --tagline-color: #FFD700;
+            --cta-color: #FFD700;
+            --cta-bg: rgba(255,215,0,0.1);
+            --badge-bg: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        .service-card[data-service="autoparts"] {
+            --card-gradient: linear-gradient(135deg, #00B4D8, #0096C7);
+            --icon-bg: rgba(0,180,216,0.15);
+            --tagline-color: #00B4D8;
+            --cta-color: #00B4D8;
+            --cta-bg: rgba(0,180,216,0.1);
+            --badge-bg: linear-gradient(135deg, #00B4D8, #0096C7);
+        }
+
+        .service-card[data-service="whisperlearn"] {
+            --card-gradient: linear-gradient(135deg, #FF9500, #FF6B00);
+            --icon-bg: rgba(255,149,0,0.15);
+            --tagline-color: #FF9500;
+            --cta-color: #FF9500;
+            --cta-bg: rgba(255,149,0,0.1);
+            --badge-bg: linear-gradient(135deg, #FF9500, #FF6B00);
+        }
+
+        /* Future Projects Section */
+        .future-projects {
+            background: linear-gradient(180deg, rgba(123,97,255,0.03) 0%, rgba(255,107,107,0.03) 50%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .future-projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--coral), transparent);
+        }
+
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .pipeline-card {
+            padding: 40px 35px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.85;
+        }
+
+        .pipeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--coral));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            transform-origin: left;
+        }
+
+        .pipeline-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(123,97,255,0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .pipeline-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            opacity: 1;
+            border-color: rgba(123,97,255,0.4);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.6), 0 0 50px rgba(123,97,255,0.2);
+        }
+
+        .pipeline-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pipeline-card:hover::after {
+            opacity: 1;
+        }
+
+        .pipeline-status {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            padding: 8px 18px;
+            background: rgba(123,97,255,0.2);
+            border: 1px solid rgba(123,97,255,0.4);
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        .pipeline-card[data-status="testing"] .pipeline-status {
+            background: rgba(0,245,212,0.2);
+            border-color: rgba(0,245,212,0.4);
+            color: var(--primary);
+        }
+
+        .pipeline-card[data-status="research"] .pipeline-status {
+            background: rgba(255,107,107,0.2);
+            border-color: rgba(255,107,107,0.4);
+            color: var(--coral);
+        }
+
+        .pipeline-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 25px;
+            border-radius: 24px;
+            background: rgba(123,97,255,0.1);
+            border: 1px solid rgba(123,97,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .pipeline-icon svg {
+            width: 45px;
+            height: 45px;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .pipeline-card:hover .pipeline-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(123,97,255,0.2);
+            box-shadow: 0 10px 30px rgba(123,97,255,0.3);
+        }
+
+        .pipeline-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .pipeline-category {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .pipeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .pipeline-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .pipeline-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .pipeline-progress {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pipeline-progress::before {
+            content: attr(data-progress);
+            display: none;
+        }
+
+        .pipeline-cta {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 70px 60px;
+            background: linear-gradient(135deg, rgba(123,97,255,0.1), rgba(255,107,107,0.1));
+            border: 1px solid var(--border-glass);
+            border-radius: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pipeline-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, var(--accent) 0%, transparent 60%);
+            opacity: 0.1;
+        }
+
+        .pipeline-cta h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pipeline-cta p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pipeline-cta .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Benefits Section */
+        .benefits-showcase {
+            background: linear-gradient(180deg, transparent 0%, rgba(0,245,212,0.03) 50%, transparent 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            padding: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0,245,212,0.3);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+        }
+
+        .benefit-card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5,5,8,0.97);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            overflow-y: auto;
+            padding: 40px 20px;
+            will-change: opacity;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(20,20,30,0.98), rgba(15,15,25,0.98));
+            border: 1px solid var(--border-glass);
+            border-radius: 40px;
+            position: relative;
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-bg-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            pointer-events: none;
+            animation: modalGlowMove 15s ease-in-out infinite;
+        }
+
+        @keyframes modalGlowMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(200px, -100px); }
+        }
+
+        .modal-glow-1 {
+            top: -300px;
+            right: -300px;
+        }
+
+        .modal-glow-2 {
+            bottom: -300px;
+            left: -300px;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 10px 40px rgba(0,245,212,0.4);
+        }
+
+        .modal-header {
+            padding: 80px 80px 60px;
+            background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(123,97,255,0.08));
+            border-bottom: 1px solid var(--border-glass);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, var(--primary) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, var(--accent) 0%, transparent 40%);
+            opacity: 0.08;
+            filter: blur(100px);
+        }
+
+        .modal-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--coral), transparent);
+        }
+
+        .modal-header-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-icon-large {
+            width: 140px;
+            height: 140px;
+            border-radius: 35px;
+            background: var(--icon-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            animation: modalIconFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes modalIconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .modal-icon-large::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: var(--card-gradient);
+            border-radius: 40px;
+            opacity: 0.4;
+            filter: blur(20px);
+        }
+
+        .modal-icon-large svg {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-header-text {
+            flex: 1;
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: var(--badge-bg);
+            color: var(--bg-dark);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-badge::before {
+            content: '⚡';
+            font-size: 1rem;
+        }
+
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 18px;
+            line-height: 1.05;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-tagline {
+            font-size: 1.5rem;
+            color: var(--tagline-color);
+            font-weight: 600;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px currentColor;
+        }
+
+        .modal-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            max-width: 850px;
+        }
+
+        .modal-stats-row {
+            display: flex;
+            gap: 25px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .modal-stat-box {
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-stat-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+            border-color: var(--tagline-color);
+        }
+
+        .modal-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--tagline-color);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .modal-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-body {
+            padding: 70px 80px;
+        }
+
+        .modal-section {
+            margin-bottom: 70px;
+        }
+
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .modal-section-title::before {
+            content: '';
+            width: 6px;
+            height: 50px;
+            background: var(--card-gradient);
+            border-radius: 3px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-gradient);
+            transform: scaleX(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, var(--tagline-color) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover::after {
+            opacity: 0.05;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--tagline-color);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.6), 0 0 40px rgba(0,245,212,0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        }
+
+        .feature-card-header {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .feature-icon-box {
+            width: 75px;
+            height: 75px;
+            border-radius: 22px;
+            background: var(--icon-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .feature-icon-box::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: var(--card-gradient);
+            border-radius: 25px;
+            opacity: 0;
+            filter: blur(12px);
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon-box {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .feature-card:hover .feature-icon-box::before {
+            opacity: 0.5;
+        }
+
+        .feature-card h4 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefits-showcase-modal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .benefit-pill {
+            padding: 20px 28px;
+            background: var(--icon-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-pill:hover {
+            transform: translateX(10px);
+            border-color: var(--cta-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .benefit-pill-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--cta-color);
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .workflow-diagram {
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(0,245,212,0.05), rgba(123,97,255,0.05));
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            margin-top: 40px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .workflow-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .workflow-step::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        .workflow-step:last-child::after {
+            display: none;
+        }
+
+        .workflow-step-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: var(--icon-bg);
+            border: 3px solid var(--cta-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 var(--cta-color);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(0,245,212,0);
+            }
+        }
+
+        .workflow-step h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .workflow-step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .modal-cta-section {
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(123,97,255,0.08));
+            border: 1px solid var(--border-glass);
+            border-radius: 35px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, var(--primary) 0%, transparent 60%);
+            opacity: 0.05;
+        }
+
+        .modal-cta-section h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-cta-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-cta-buttons .btn {
+            min-width: 220px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tech-badge {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-badge::before {
+            content: '◆';
+            color: var(--primary);
+        }
+
+        /* 3D Canvas for modals */
+        .modal-3d-canvas {
+            width: 100%;
+            height: 400px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-top: 30px;
+            border: 1px solid var(--border-glass);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, transparent 0%, rgba(123,97,255,0.03) 100%);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 40px;
+            padding: 70px 60px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .contact-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0,245,212,0.05);
+            box-shadow: 0 0 0 4px rgba(0,245,212,0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select option {
+            background: var(--bg-dark);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 16px;
+            color: var(--bg-dark);
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0,245,212,0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 80px 50px;
+            background: var(--bg-darker);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 70px;
+            margin-bottom: 70px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .footer-brand h3 span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            color: var(--bg-dark);
+            border-color: transparent;
+            transform: translateY(-5px);
+        }
+
+        .footer-column h4 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 18px;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 50px;
+            border-top: 1px solid var(--border-glass);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 35px;
+        }
+
+        .footer-legal a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: scrollFloat 3s infinite;
+        }
+
+        @keyframes scrollFloat {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(15px);
+            }
+        }
+
+        .scroll-mouse {
+            width: 28px;
+            height: 45px;
+            border: 2px solid var(--border-glass);
+            border-radius: 18px;
+            position: relative;
+        }
+
+        .scroll-mouse::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: scrollWheel 2s infinite;
+        }
+
+        @keyframes scrollWheel {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+                opacity: 0.3;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            nav {
+                padding: 20px 40px;
+            }
+
+            nav.scrolled {
+                padding: 15px 40px;
+            }
+
+            section {
+                padding: 100px 40px;
+            }
+
+            .hero {
+                padding: 130px 40px 80px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+            }
+
+            .modal-header {
+                padding: 50px 50px 40px;
+            }
+
+            .modal-body {
+                padding: 50px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            nav > div > .btn {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-menu-toggle {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav .btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+            }
+
+            .logo-text {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero {
+                padding: 120px 25px 70px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 25px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-container {
+                padding: 50px 35px;
+            }
+
+            /* Modal Responsive */
+            .modal-overlay {
+                padding: 20px 10px;
+            }
+
+            .modal-close {
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .modal-header {
+                padding: 40px 25px 30px;
+            }
+
+            .modal-header-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .modal-icon-large {
+                width: 100px;
+                height: 100px;
+            }
+
+            .modal-icon-large svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+
+            .modal-tagline {
+                font-size: 1.1rem;
+            }
+
+            .modal-description {
+                font-size: 1rem;
+            }
+
+            .modal-body {
+                padding: 40px 25px;
+            }
+
+            .modal-section {
+                margin-bottom: 50px;
+            }
+
+            .modal-section-title {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-showcase-modal {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+            }
+
+            .workflow-step::after {
+                content: '↓';
+                top: auto;
+                bottom: -35px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .modal-cta-section {
+                padding: 35px 25px;
+            }
+
+            .modal-cta-section h3 {
+                font-size: 1.6rem;
+            }
+
+            .modal-cta-buttons {
+                flex-direction: column;
+            }
+
+            .modal-cta-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-card {
+                padding: 35px 30px;
+            }
+
+            .pipeline-cta {
+                padding: 50px 35px;
+            }
+
+            .pipeline-cta h3 {
+                font-size: 1.8rem;
+            }
+
+            .mobile-menu {
+                max-width: 100%;
+                padding: 80px 25px 30px;
+            }
+
+            .mobile-nav-links a {
+                font-size: 1rem;
+                padding: 18px 0;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent), var(--coral));
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-ring"></div>
+            <div class="preloader-ring"></div>
+            <div class="preloader-ring"></div>
+            <div class="preloader-logo">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="preloaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00F5D4"/>
+                            <stop offset="50%" style="stop-color:#7B61FF"/>
+                            <stop offset="100%" style="stop-color:#FF6B6B"/>
+                        </linearGradient>
+                        <filter id="preloaderGlow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="40" cy="40" r="10" fill="url(#preloaderGradient)" filter="url(#preloaderGlow)"/>
+                    <circle cx="40" cy="15" r="5" fill="url(#preloaderGradient)" opacity="0.8"/>
+                    <circle cx="65" cy="40" r="5" fill="url(#preloaderGradient)" opacity="0.8"/>
+                    <circle cx="40" cy="65" r="5" fill="url(#preloaderGradient)" opacity="0.8"/>
+                    <circle cx="15" cy="40" r="5" fill="url(#preloaderGradient)" opacity="0.8"/>
+                    <circle cx="25" cy="25" r="4" fill="url(#preloaderGradient)" opacity="0.6"/>
+                    <circle cx="55" cy="25" r="4" fill="url(#preloaderGradient)" opacity="0.6"/>
+                    <circle cx="55" cy="55" r="4" fill="url(#preloaderGradient)" opacity="0.6"/>
+                    <circle cx="25" cy="55" r="4" fill="url(#preloaderGradient)" opacity="0.6"/>
+                    <line x1="40" y1="30" x2="40" y2="20" stroke="url(#preloaderGradient)" stroke-width="2" opacity="0.5"/>
+                    <line x1="50" y1="40" x2="60" y2="40" stroke="url(#preloaderGradient)" stroke-width="2" opacity="0.5"/>
+                    <line x1="40" y1="50" x2="40" y2="60" stroke="url(#preloaderGradient)" stroke-width="2" opacity="0.5"/>
+                    <line x1="30" y1="40" x2="20" y2="40" stroke="url(#preloaderGradient)" stroke-width="2" opacity="0.5"/>
+                    <circle cx="40" cy="40" r="35" stroke="url(#preloaderGradient)" stroke-width="1.5" fill="none" opacity="0.3"/>
+                </svg>
+            </div>
+        </div>
+        <div class="preloader-text">Initializing AI Systems</div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-gradient-orb orb-1"></div>
+        <div class="bg-gradient-orb orb-2"></div>
+        <div class="bg-gradient-orb orb-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00F5D4"/>
+                            <stop offset="50%" style="stop-color:#7B61FF"/>
+                            <stop offset="100%" style="stop-color:#FF6B6B"/>
+                        </linearGradient>
+                        <filter id="logoGlow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Central Core -->
+                    <circle cx="40" cy="40" r="8" fill="url(#logoGradient)" filter="url(#logoGlow)">
+                        <animate attributeName="r" values="8;9;8" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Neural Network Nodes - Layer 1 -->
+                    <circle cx="40" cy="15" r="4" fill="url(#logoGradient)" opacity="0.8"/>
+                    <circle cx="65" cy="40" r="4" fill="url(#logoGradient)" opacity="0.8"/>
+                    <circle cx="40" cy="65" r="4" fill="url(#logoGradient)" opacity="0.8"/>
+                    <circle cx="15" cy="40" r="4" fill="url(#logoGradient)" opacity="0.8"/>
+                    
+                    <!-- Neural Network Nodes - Layer 2 -->
+                    <circle cx="25" cy="25" r="3" fill="url(#logoGradient)" opacity="0.6"/>
+                    <circle cx="55" cy="25" r="3" fill="url(#logoGradient)" opacity="0.6"/>
+                    <circle cx="55" cy="55" r="3" fill="url(#logoGradient)" opacity="0.6"/>
+                    <circle cx="25" cy="55" r="3" fill="url(#logoGradient)" opacity="0.6"/>
+                    
+                    <!-- Connection Lines -->
+                    <line x1="40" y1="32" x2="40" y2="19" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="48" y1="40" x2="61" y2="40" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="40" y1="48" x2="40" y2="61" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="32" y1="40" x2="19" y2="40" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.4"/>
+                    
+                    <line x1="34" y1="34" x2="28" y2="28" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="46" y1="34" x2="52" y2="28" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="46" y1="46" x2="52" y2="52" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="34" y1="46" x2="28" y2="52" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.3"/>
+                    
+                    <!-- Outer Ring -->
+                    <circle cx="40" cy="40" r="32" stroke="url(#logoGradient)" stroke-width="1" fill="none" opacity="0.3">
+                        <animate attributeName="r" values="32;33;32" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Data Flow Particles -->
+                    <circle cx="40" cy="15" r="1.5" fill="#00F5D4">
+                        <animateMotion path="M 0,0 L 0,17" dur="1.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="65" cy="40" r="1.5" fill="#7B61FF">
+                        <animateMotion path="M 0,0 L -17,0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+            <div class="logo-text"><span>NEXUS</span> AI</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pipeline">Pipeline</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="#contact" class="btn btn-primary">Get Started →</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+            <li><a href="#pipeline" onclick="closeMobileMenu()">Pipeline</a></li>
+            <li><a href="#benefits" onclick="closeMobileMenu()">Benefits</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+        <div class="mobile-cta">
+            <a href="#contact" class="btn btn-primary btn-lg" onclick="closeMobileMenu()">Get Started →</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge fade-in">
+                <span class="badge-pulse"></span>
+                Transforming Enterprises with AI
+        </div>
+            <h1 class="fade-in">
+                Enterprise Intelligence<br>
+                <span class="gradient-text">Redefined</span>
+            </h1>
+            <p class="fade-in">
+                NEXUS AI delivers cutting-edge artificial intelligence solutions that automate workflows, optimize operations, and unlock unprecedented efficiency for enterprises, educational institutions, and organizations across all industries.
+            </p>
+            <div class="hero-cta fade-in">
+                <a href="#services" class="btn btn-primary btn-lg">Explore Services →</a>
+                <a href="#contact" class="btn btn-outline btn-lg">Schedule Demo</a>
+        </div>
+            <div class="hero-features">
+                <div class="hero-feature fade-in">
+                    <div class="hero-feature-icon">⚡</div>
+                    <h3>Real-Time AI</h3>
+                    <p>Lightning-fast processing for instant results</p>
+                </div>
+                <div class="hero-feature fade-in">
+                    <div class="hero-feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-grade encryption and compliance</p>
+                </div>
+                <div class="hero-feature fade-in">
+                    <div class="hero-feature-icon">🌐</div>
+                    <h3>Global Scale</h3>
+                    <p>Infrastructure across 25+ countries</p>
+                </div>
+                <div class="hero-feature fade-in">
+                    <div class="hero-feature-icon">🤖</div>
+                    <h3>7 AI Platforms</h3>
+                    <p>Proprietary models trained on billions of data points</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header">
+            <span class="section-tag">Our Services</span>
+            <h2 class="section-title">Seven Revolutionary AI Platforms</h2>
+            <p class="section-subtitle">
+                Each platform is engineered to solve complex enterprise challenges, delivering measurable results and transformative efficiency gains across industries.
+            </p>
+        </div>
+        <div class="services-grid">
+            <!-- DocuSynth AI -->
+            <div class="service-card fade-in" data-service="docusynth">
+                <div class="service-badge">Flagship</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="8" y="5" width="28" height="36" rx="3" stroke="#00F5D4" stroke-width="2" fill="none"/>
+                        <path d="M14 14H30M14 20H30M14 26H24" stroke="#00F5D4" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="34" cy="34" r="10" fill="#00F5D4"/>
+                        <path d="M30 34L33 37L38 32" stroke="#050508" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">DOCUSYNTH AI</h3>
+                    <p class="service-tagline">Intelligent Document Automation</p>
+                    <p class="service-desc">
+                        Enterprise e-signature platform with LLM-powered document analysis. Fully integrated with on-premises Outlook for maximum security and seamless workflow management.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>95% reduction in document processing time</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Eliminate manual data entry errors</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Complete audit trail and compliance</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('docusynth'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- AssetVault AI -->
+            <div class="service-card fade-in" data-service="assetvault">
+                <div class="service-badge">Enterprise</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="5" y="18" width="16" height="24" rx="2" stroke="#7B61FF" stroke-width="2" fill="none"/>
+                        <rect x="29" y="10" width="16" height="32" rx="2" stroke="#7B61FF" stroke-width="2" fill="none"/>
+                        <circle cx="13" cy="10" r="6" stroke="#7B61FF" stroke-width="2" fill="none"/>
+                        <path d="M13 7V13M10 10H16" stroke="#7B61FF" stroke-width="1.5"/>
+                        <rect x="9" y="25" width="8" height="5" rx="1" fill="#7B61FF"/>
+                        <rect x="33" y="20" width="8" height="5" rx="1" fill="#7B61FF"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">ASSETVAULT AI</h3>
+                    <p class="service-tagline">Total Asset Intelligence</p>
+                    <p class="service-desc">
+                        Comprehensive AI-powered asset management platform with food resource monitoring and kitchen recipe optimization for complete operational visibility.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>40% reduction in operational costs</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Real-time asset tracking and analytics</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Predictive maintenance alerts</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('assetvault'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- EcoSense AI -->
+            <div class="service-card fade-in" data-service="ecosense">
+                <div class="service-badge">Smart City</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M15 42V18L25 10L35 18V42" stroke="#00D9A5" stroke-width="2" fill="none"/>
+                        <rect x="20" y="24" width="10" height="18" rx="1" stroke="#00D9A5" stroke-width="1.5" fill="none"/>
+                        <circle cx="25" cy="18" r="4" fill="#00D9A5"/>
+                        <path d="M10 42H40" stroke="#00D9A5" stroke-width="2"/>
+                        <circle cx="40" cy="15" r="7" stroke="#00D9A5" stroke-width="2" fill="none"/>
+                        <path d="M37 15L39 17L43 13" stroke="#00D9A5" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">ECOSENSE AI</h3>
+                    <p class="service-tagline">Smart Waste Management</p>
+                    <p class="service-desc">
+                        Revolutionary IoT-powered waste management system with AI-driven route optimization, deployed across Qatar for maximum efficiency.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>60% improvement in route efficiency</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Zero overflow with predictive alerts</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Significant environmental impact reduction</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('ecosense'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- MarketMind AI -->
+            <div class="service-card fade-in" data-service="marketmind">
+                <div class="service-badge">AI Commerce</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <circle cx="25" cy="18" r="12" stroke="#FF6B6B" stroke-width="2" fill="none"/>
+                        <path d="M20 18L23 21L30 14" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10 35H40L35 45H15L10 35Z" stroke="#FF6B6B" stroke-width="2" fill="none"/>
+                        <rect x="18" y="38" width="5" height="4" rx="1" fill="#FF6B6B"/>
+                        <rect x="27" y="38" width="5" height="4" rx="1" fill="#FF6B6B"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">MARKETMIND AI</h3>
+                    <p class="service-tagline">Autonomous E-Commerce</p>
+                    <p class="service-desc">
+                        Fully autonomous AI-powered e-commerce platform operating 24/7 with self-managing inventory, dynamic pricing, and intelligent marketing automation.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>24/7 autonomous operations</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>300% increase in sales efficiency</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>AI-powered customer service</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('marketmind'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DesignForge AI -->
+            <div class="service-card fade-in" data-service="designforge">
+                <div class="service-badge">Creative AI</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="6" y="10" width="22" height="30" rx="2" stroke="#FFD700" stroke-width="2" fill="none"/>
+                        <circle cx="17" cy="22" r="6" stroke="#FFD700" stroke-width="1.5" fill="none"/>
+                        <rect x="11" y="32" width="12" height="4" rx="1" fill="#FFD700"/>
+                        <path d="M35 12L45 22L35 40L31 37L39 22L31 16L35 12Z" fill="#FFD700"/>
+                        <circle cx="40" cy="36" r="5" stroke="#FFD700" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">DESIGNFORGE AI</h3>
+                    <p class="service-tagline">Enterprise Creative Suite</p>
+                    <p class="service-desc">
+                        Complete AI-powered marketing and design solution generating brand-consistent content at scale with 10x faster output than traditional methods.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>10x faster content creation</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>80% reduction in creative costs</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Infinite scalability</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('designforge'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- AutoParts AI -->
+            <div class="service-card fade-in" data-service="autoparts">
+                <div class="service-badge">Automotive</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M10 28L15 18H35L40 28V35H10V28Z" stroke="#00B4D8" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="35" r="5" stroke="#00B4D8" stroke-width="2" fill="none"/>
+                        <circle cx="34" cy="35" r="5" stroke="#00B4D8" stroke-width="2" fill="none"/>
+                        <rect x="20" y="22" width="10" height="6" rx="1" stroke="#00B4D8" stroke-width="1.5" fill="none"/>
+                        <circle cx="40" cy="15" r="7" fill="#00B4D8"/>
+                        <path d="M37 15H43M40 12V18" stroke="#050508" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">AUTOPARTS AI</h3>
+                    <p class="service-tagline">Intelligent Automotive Platform</p>
+                    <p class="service-desc">
+                        World-class AI-powered automotive parts marketplace with OCR vision, VIN decoding, and OBD2 diagnostics for 100% compatibility matching.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>100% parts compatibility accuracy</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>8 integrated AI systems</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Professional-grade diagnostics</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('autoparts'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- WhisperLearn AI -->
+            <div class="service-card fade-in" data-service="whisperlearn">
+                <div class="service-badge">EdTech AI</div>
+                <div class="service-icon-wrapper">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <circle cx="25" cy="15" r="10" stroke="#FF9500" stroke-width="2" fill="none"/>
+                        <path d="M25 5V15M25 15L20 20M25 15L30 20" stroke="#FF9500" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="8" y="28" width="34" height="18" rx="2" stroke="#FF9500" stroke-width="2" fill="none"/>
+                        <path d="M14 34H36M14 38H36M14 42H28" stroke="#FF9500" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M15 15C15 15 18 18 20 20C22 22 25 25 25 25" stroke="#FF9500" stroke-width="1.5" opacity="0.5"/>
+                        <path d="M35 15C35 15 32 18 30 20C28 22 25 25 25 25" stroke="#FF9500" stroke-width="1.5" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="service-card-content">
+                    <h3 class="service-name">WHISPERLEARN AI</h3>
+                    <p class="service-tagline">Intelligent Lecture Transcription</p>
+                    <p class="service-desc">
+                        Revolutionary AI-powered platform that transforms lecture recordings into comprehensive, easy-to-understand study notes. Upload up to 1GB audio files for instant transcription and intelligent note generation.
+                    </p>
+                    <div class="service-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Upload recordings up to 1GB</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>AI-generated comprehensive notes</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <span>Zero information loss</span>
+                        </div>
+                    </div>
+                    <a href="#" class="service-cta" onclick="openModal('whisperlearn'); return false;">
+                        <span>Learn More</span>
+                        <div class="service-cta-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Projects Section -->
+    <section class="future-projects" id="pipeline">
+        <div class="section-header">
+            <span class="section-tag">Innovation Pipeline</span>
+            <h2 class="section-title">Next-Generation AI Platforms</h2>
+            <p class="section-subtitle">
+                Our R&D team is developing 10 groundbreaking AI platforms set to revolutionize additional industries. Here's what's coming next.
+            </p>
+        </div>
+        <div class="pipeline-grid">
+            <!-- QuantumMind AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <circle cx="25" cy="25" r="18" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="25" cy="25" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="25" cy="25" r="6" fill="currentColor"/>
+                        <line x1="25" y1="7" x2="25" y2="13" stroke="currentColor" stroke-width="2"/>
+                        <line x1="25" y1="37" x2="25" y2="43" stroke="currentColor" stroke-width="2"/>
+                        <line x1="43" y1="25" x2="37" y2="25" stroke="currentColor" stroke-width="2"/>
+                        <line x1="13" y1="25" x2="7" y2="25" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>QuantumMind AI</h3>
+                <p class="pipeline-category">Predictive Analytics</p>
+                <p class="pipeline-desc">Advanced predictive analytics and business intelligence platform using quantum-inspired algorithms for unprecedented forecasting accuracy.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q3 2025</span>
+                    <span class="pipeline-progress">75%</span>
+                </div>
+            </div>
+
+            <!-- MedicalCore AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M25 10L30 20L25 25L20 20L25 10Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="25" cy="25" r="15" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M25 15V35M15 25H35" stroke="currentColor" stroke-width="2.5"/>
+                    </svg>
+                </div>
+                <h3>MedicalCore AI</h3>
+                <p class="pipeline-category">Healthcare Intelligence</p>
+                <p class="pipeline-desc">AI-powered healthcare platform for medical diagnosis, patient management, and treatment recommendations with 98% diagnostic accuracy.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q4 2025</span>
+                    <span class="pipeline-progress">60%</span>
+                </div>
+            </div>
+
+            <!-- LegalVault AI -->
+            <div class="pipeline-card fade-in" data-status="testing">
+                <div class="pipeline-status">Beta Testing</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="10" y="15" width="30" height="30" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M20 15V10C20 8 21 7 23 7H27C29 7 30 8 30 10V15" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 25H30M20 30H30M20 35H25" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>LegalVault AI</h3>
+                <p class="pipeline-category">Legal Tech</p>
+                <p class="pipeline-desc">Comprehensive legal document analysis, contract review, and case law research powered by specialized legal AI models.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q2 2025</span>
+                    <span class="pipeline-progress">85%</span>
+                </div>
+            </div>
+
+            <!-- AgriSense AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M25 40V25M25 25C25 25 20 20 15 20C10 20 10 15 10 15C10 15 15 15 20 20C25 25 25 25 25 25Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M25 25C25 25 30 20 35 20C40 20 40 15 40 15C40 15 35 15 30 20C25 25 25 25 25 25Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="25" cy="40" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <h3>AgriSense AI</h3>
+                <p class="pipeline-category">Smart Agriculture</p>
+                <p class="pipeline-desc">IoT-powered precision agriculture platform with crop health monitoring, yield prediction, and automated irrigation management.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q3 2025</span>
+                    <span class="pipeline-progress">55%</span>
+                </div>
+            </div>
+
+            <!-- FinanceGuard AI -->
+            <div class="pipeline-card fade-in" data-status="testing">
+                <div class="pipeline-status">Beta Testing</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="12" y="18" width="26" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M25 25V31M22 28H28" stroke="currentColor" stroke-width="2"/>
+                        <path d="M18 18V15C18 13 20 11 25 11C30 11 32 13 32 15V18" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>FinanceGuard AI</h3>
+                <p class="pipeline-category">Financial Security</p>
+                <p class="pipeline-desc">Real-time fraud detection, risk analysis, and compliance monitoring for financial institutions with blockchain integration.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q2 2025</span>
+                    <span class="pipeline-progress">80%</span>
+                </div>
+            </div>
+
+            <!-- TalentForge AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <circle cx="25" cy="18" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M12 40C12 32 17 28 25 28C33 28 38 32 38 40" stroke="currentColor" stroke-width="2"/>
+                        <path d="M35 20L40 18L42 23" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <h3>TalentForge AI</h3>
+                <p class="pipeline-category">HR Technology</p>
+                <p class="pipeline-desc">AI-powered recruitment, talent assessment, and employee engagement platform with predictive performance analytics.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q4 2025</span>
+                    <span class="pipeline-progress">45%</span>
+                </div>
+            </div>
+
+            <!-- CyberShield AI -->
+            <div class="pipeline-card fade-in" data-status="research">
+                <div class="pipeline-status">Research Phase</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M25 10L15 15V25C15 32 20 38 25 40C30 38 35 32 35 25V15L25 10Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M20 25L23 28L30 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>CyberShield AI</h3>
+                <p class="pipeline-category">Cybersecurity</p>
+                <p class="pipeline-desc">Advanced AI-driven threat detection, real-time security monitoring, and automated incident response for enterprise networks.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q1 2026</span>
+                    <span class="pipeline-progress">30%</span>
+                </div>
+            </div>
+
+            <!-- TranslateFlow AI -->
+            <div class="pipeline-card fade-in" data-status="testing">
+                <div class="pipeline-status">Beta Testing</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="30" cy="30" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M15 18H25M18 22L22 14" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>TranslateFlow AI</h3>
+                <p class="pipeline-category">Language Technology</p>
+                <p class="pipeline-desc">Real-time multi-language translation and communication platform for global teams with voice, text, and video support.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q3 2025</span>
+                    <span class="pipeline-progress">70%</span>
+                </div>
+            </div>
+
+            <!-- BuildSmart AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <path d="M10 25L25 10L40 25" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="15" y="25" width="20" height="15" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="22" y="32" width="6" height="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <h3>BuildSmart AI</h3>
+                <p class="pipeline-category">Construction Tech</p>
+                <p class="pipeline-desc">AI-powered construction project management with safety monitoring, resource optimization, and automated progress tracking.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q4 2025</span>
+                    <span class="pipeline-progress">50%</span>
+                </div>
+            </div>
+
+            <!-- RetailMind AI -->
+            <div class="pipeline-card fade-in" data-status="development">
+                <div class="pipeline-status">In Development</div>
+                <div class="pipeline-icon">
+                    <svg viewBox="0 0 50 50" fill="none">
+                        <rect x="10" y="15" width="30" height="25" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M10 22H40" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="25" cy="30" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M15 15L18 8H32L35 15" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3>RetailMind AI</h3>
+                <p class="pipeline-category">Retail Intelligence</p>
+                <p class="pipeline-desc">Personalized shopping experiences with AI recommendation engine, inventory optimization, and customer behavior analytics.</p>
+                <div class="pipeline-meta">
+                    <span class="pipeline-date">Q3 2025</span>
+                    <span class="pipeline-progress">65%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pipeline CTA -->
+        <div class="pipeline-cta">
+            <h3>Want to Partner on These Innovations?</h3>
+            <p>We're seeking strategic partners and early adopters for our next-generation platforms. Get exclusive beta access and help shape the future of AI.</p>
+            <a href="#contact" class="btn btn-primary btn-lg">Join Innovation Program →</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-showcase" id="benefits">
+        <div class="section-header">
+            <span class="section-tag">Enterprise Benefits</span>
+            <h2 class="section-title">Why Enterprises Choose NEXUS AI</h2>
+            <p class="section-subtitle">
+                Our AI solutions deliver transformative benefits that drive sustainable growth, operational excellence, and competitive advantage.
+            </p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">🚀</div>
+                <h3>Accelerated Growth</h3>
+                <p>
+                    Scale operations exponentially without proportional cost increases. Our AI platforms grow with your business, handling increased workload seamlessly.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">💡</div>
+                <h3>Intelligent Automation</h3>
+                <p>
+                    Automate complex workflows and eliminate repetitive tasks. Free your team to focus on strategic initiatives that drive business value.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">📊</div>
+                <h3>Data-Driven Insights</h3>
+                <p>
+                    Gain actionable intelligence from your data. Make informed decisions backed by real-time analytics and predictive modeling.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">💰</div>
+                <h3>Cost Optimization</h3>
+                <p>
+                    Reduce operational expenses by up to 40% through intelligent resource allocation and process optimization powered by AI.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">🔐</div>
+                <h3>Enterprise Security</h3>
+                <p>
+                    Bank-grade security with end-to-end encryption, compliance with global standards, and on-premises deployment options.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">🌍</div>
+                <h3>Global Scalability</h3>
+                <p>
+                    Deploy across multiple regions with low-latency infrastructure. Serve customers worldwide with consistent performance.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">🎓</div>
+                <h3>Education & Learning</h3>
+                <p>
+                    Transform educational experiences with AI-powered learning tools. Help students and professionals master complex subjects faster and more effectively.
+                </p>
+            </div>
+            <div class="benefit-card scale-in">
+                <div class="benefit-card-icon">⚙️</div>
+                <h3>Seamless Integration</h3>
+                <p>
+                    Plug-and-play integration with existing systems. Our APIs work with your current infrastructure without requiring major overhauls.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2>Transform Your Enterprise Today</h2>
+                <p>
+                    Schedule a personalized demo and discover how NEXUS AI can revolutionize your operations. Our team responds within 24 hours.
+                </p>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Smith" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Work Email</label>
+                    <input type="email" placeholder="john.smith@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" placeholder="Acme Corporation" required>
+                </div>
+                <div class="form-group">
+                    <label>Service Interest</label>
+                    <select required>
+                        <option value="">Select a service...</option>
+                        <option>DocuSynth AI - Document Automation</option>
+                        <option>AssetVault AI - Asset Management</option>
+                        <option>EcoSense AI - Waste Management</option>
+                        <option>MarketMind AI - E-Commerce</option>
+                        <option>DesignForge AI - Creative Suite</option>
+                        <option>AutoParts AI - Automotive Platform</option>
+                        <option>WhisperLearn AI - Lecture Transcription</option>
+                        <option>Innovation Pipeline - Beta Access</option>
+                        <option>Strategic Partnership</option>
+                        <option>Multiple Services</option>
+                        <option>General Inquiry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us about your business needs and challenges..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Schedule Demo →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <button class="modal-close" id="modalClose">×</button>
+        <div class="modal-container" id="modalContainer">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 40px; height: 40px; background: rgba(0,245,212,0.1); border-radius: 10px; border: 1px solid rgba(0,245,212,0.2); display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 80 80" fill="none" style="width: 30px; height: 30px;">
+                            <defs>
+                                <linearGradient id="footerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00F5D4"/>
+                                    <stop offset="50%" style="stop-color:#7B61FF"/>
+                                    <stop offset="100%" style="stop-color:#FF6B6B"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="40" cy="40" r="6" fill="url(#footerGradient)"/>
+                            <circle cx="40" cy="20" r="3" fill="url(#footerGradient)" opacity="0.8"/>
+                            <circle cx="60" cy="40" r="3" fill="url(#footerGradient)" opacity="0.8"/>
+                            <circle cx="40" cy="60" r="3" fill="url(#footerGradient)" opacity="0.8"/>
+                            <circle cx="20" cy="40" r="3" fill="url(#footerGradient)" opacity="0.8"/>
+                            <line x1="40" y1="34" x2="40" y2="23" stroke="url(#footerGradient)" stroke-width="1.5" opacity="0.4"/>
+                            <line x1="46" y1="40" x2="57" y2="40" stroke="url(#footerGradient)" stroke-width="1.5" opacity="0.4"/>
+                            <line x1="40" y1="46" x2="40" y2="57" stroke="url(#footerGradient)" stroke-width="1.5" opacity="0.4"/>
+                            <line x1="34" y1="40" x2="23" y2="40" stroke="url(#footerGradient)" stroke-width="1.5" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h3><span>NEXUS</span> AI</h3>
+                </div>
+                <p>
+                    Pioneering the future of enterprise artificial intelligence. Seven revolutionary platforms. One transformative vision for business excellence.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">𝕏</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">▶</a>
+                    <a href="#" class="social-link">◎</a>
+        </div>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">DocuSynth AI</a></li>
+                    <li><a href="#services">AssetVault AI</a></li>
+                    <li><a href="#services">EcoSense AI</a></li>
+                    <li><a href="#services">MarketMind AI</a></li>
+                    <li><a href="#services">DesignForge AI</a></li>
+                    <li><a href="#services">AutoParts AI</a></li>
+                    <li><a href="#services">WhisperLearn AI</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#services">About Us</a></li>
+                    <li><a href="#pipeline">Innovation Pipeline</a></li>
+                    <li><a href="#benefits">Why NEXUS AI</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 NEXUS AI. All rights reserved. Pioneering Enterprise Intelligence.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                gsap.to('#preloader', {
+                    opacity: 0,
+                    duration: 0.8,
+                    onComplete: () => {
+                        document.getElementById('preloader').style.display = 'none';
+                        initAnimations();
+                    }
+                });
+            }, 2000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Optimized service card mouse tracking with throttling
+        document.querySelectorAll('.service-card').forEach(card => {
+            let lastUpdate = 0;
+            card.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastUpdate > 50) {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-x', `${x}%`);
+                    card.style.setProperty('--mouse-y', `${y}%`);
+                    lastUpdate = now;
+                }
+            });
+        });
+
+        // Optimized Three.js 3D Animation
+        const canvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ 
+            canvas, 
+            alpha: true, 
+            antialias: false,
+            powerPreference: "high-performance"
+        });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        
+        // Create main geometry (optimized)
+        const geometry = new THREE.IcosahedronGeometry(2.5, 1);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x00F5D4,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.25
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+        
+        // Reduced particle system for performance
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1000;
+        const posArray = new Float32Array(particlesCount * 3);
+        
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 60;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.06,
+            color: 0x7B61FF,
+            transparent: true,
+            opacity: 0.5
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        camera.position.z = 12;
+        
+        // Throttled mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        let lastMouseUpdate = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastMouseUpdate > 50) {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                lastMouseUpdate = now;
+            }
+        });
+        
+        // Optimized animation loop with FPS limiting
+        let lastFrame = 0;
+        const targetFPS = 60;
+        const frameInterval = 1000 / targetFPS;
+        
+        function animate(currentTime) {
+            requestAnimationFrame(animate);
+            
+            const deltaTime = currentTime - lastFrame;
+            if (deltaTime < frameInterval) return;
+            lastFrame = currentTime - (deltaTime % frameInterval);
+            
+            mesh.rotation.x += 0.002;
+            mesh.rotation.y += 0.003;
+            mesh.position.x += (mouseX * 0.3 - mesh.position.x) * 0.05;
+            mesh.position.y += (mouseY * 0.3 - mesh.position.y) * 0.05;
+            
+            particlesMesh.rotation.y += 0.0003;
+            particlesMesh.rotation.x += 0.0002;
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate(0);
+        
+        // Debounced window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }, 250);
+        });
+        
+        // Optimized GSAP ScrollTrigger Animations
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Batch animations for better performance
+            gsap.utils.toArray('.fade-in').forEach((el, i) => {
+                gsap.to(el, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.05,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            });
+            
+            gsap.utils.toArray('.slide-in-left').forEach(el => {
+                gsap.to(el, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.9,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            });
+            
+            gsap.utils.toArray('.slide-in-right').forEach(el => {
+                gsap.to(el, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.9,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            });
+            
+            gsap.utils.toArray('.scale-in').forEach((el, i) => {
+                gsap.to(el, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.7,
+                    delay: i * 0.05,
+                    ease: 'back.out(1.2)',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        once: true
+                    }
+                });
+            });
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest! Our team will contact you within 24 hours.');
+            e.target.reset();
+        });
+
+        // Modal Management
+        const modalData = {
+            docusynth: {
+                name: 'DOCUSYNTH AI',
+                tagline: 'Intelligent Document Automation',
+                badge: 'Flagship Product',
+                badgeBg: 'linear-gradient(135deg, #00F5D4, #00A896)',
+                iconBg: 'rgba(0,245,212,0.15)',
+                color: '#00F5D4',
+                gradient: 'linear-gradient(135deg, #00F5D4, #00A896)',
+                description: 'Revolutionary enterprise e-signature platform with advanced LLM-powered document analysis. Fully integrated with on-premises Microsoft Outlook for maximum security and seamless workflow automation.',
+                stats: [
+                    { value: '95%', label: 'Time Saved' },
+                    { value: '100%', label: 'Secure' },
+                    { value: '$2.4M', label: 'Avg Savings' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <rect x="10" y="8" width="38" height="48" rx="4" stroke="#00F5D4" stroke-width="2.5" fill="none"/>
+                    <path d="M18 22H40M18 32H40M18 42H32" stroke="#00F5D4" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="48" cy="48" r="14" fill="#00F5D4"/>
+                    <path d="M42 48L46 52L54 44" stroke="#050508" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`,
+                features: [
+                    { icon: '🔐', title: 'On-Premises Outlook Integration', desc: 'Complete security with direct integration to your on-premises Outlook infrastructure. No third-party data exposure, all processing happens within your secure environment.' },
+                    { icon: '🤖', title: 'LLM-Powered Document Analysis', desc: 'Advanced AI automatically analyzes, extracts, and validates key information from any document type. Learns from your document patterns for improved accuracy.' },
+                    { icon: '✉️', title: 'Email-Based Workflow', desc: 'Approvers receive and approve documents by simply replying to emails. No need to log into additional platforms or navigate complex interfaces.' },
+                    { icon: '📊', title: 'Automated Reporting', desc: 'Generate comprehensive reports via email commands. Approvers can request summaries of all approved documents instantly.' },
+                    { icon: '⚡', title: 'Smart Routing', desc: 'AI determines optimal approval paths based on document type, urgency, and organizational hierarchy. Reduces bottlenecks automatically.' },
+                    { icon: '🔍', title: 'Complete Audit Trail', desc: 'Tamper-proof logs of every action, timestamp, and approval decision. Full compliance with regulatory requirements and industry standards.' }
+                ],
+                benefits: [
+                    '95% Reduction in Processing Time',
+                    'Zero Third-Party Dependencies',
+                    'Automatic Document Classification',
+                    'Email Reply Approvals',
+                    'Instant Report Generation',
+                    'Enterprise-Grade Security'
+                ],
+                workflow: [
+                    { icon: '📧', title: 'Email Received', desc: 'Document arrives in Outlook' },
+                    { icon: '🤖', title: 'AI Analysis', desc: 'LLM extracts key data' },
+                    { icon: '📤', title: 'Auto-Route', desc: 'Sent to approver' },
+                    { icon: '✅', title: 'Email Approval', desc: 'Simple reply to approve' },
+                    { icon: '📝', title: 'Complete', desc: 'Signed & archived' }
+                ],
+                techStack: ['Large Language Models (LLM)', 'Natural Language Processing', 'On-Premises Integration', 'Email Protocol APIs', 'Blockchain Audit Trail', 'OCR Technology']
+            },
+            assetvault: {
+                name: 'ASSETVAULT AI',
+                tagline: 'Total Asset Intelligence',
+                badge: 'Enterprise Solution',
+                badgeBg: 'linear-gradient(135deg, #7B61FF, #5B41DF)',
+                iconBg: 'rgba(123,97,255,0.15)',
+                color: '#7B61FF',
+                gradient: 'linear-gradient(135deg, #7B61FF, #5B41DF)',
+                description: 'Comprehensive AI-powered asset management platform for enterprises. Track physical assets, manage inventory, monitor food resources, and optimize kitchen recipes for restaurants—all in one unified system.',
+                stats: [
+                    { value: '40%', label: 'Cost Cut' },
+                    { value: '3x', label: 'Efficiency' },
+                    { value: '24/7', label: 'Monitoring' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <rect x="6" y="24" width="22" height="34" rx="3" stroke="#7B61FF" stroke-width="2.5" fill="none"/>
+                    <rect x="40" y="14" width="22" height="44" rx="3" stroke="#7B61FF" stroke-width="2.5" fill="none"/>
+                    <circle cx="17" cy="14" r="8" stroke="#7B61FF" stroke-width="2.5" fill="none"/>
+                    <path d="M17 10V18M13 14H21" stroke="#7B61FF" stroke-width="2"/>
+                    <rect x="11" y="34" width="12" height="7" rx="2" fill="#7B61FF"/>
+                    <rect x="45" y="28" width="12" height="7" rx="2" fill="#7B61FF"/>
+                </svg>`,
+                features: [
+                    { icon: '📦', title: 'Complete Asset Lifecycle', desc: 'Track every asset from procurement to disposal. Monitor depreciation, maintenance schedules, location changes, and utilization across your entire organization.' },
+                    { icon: '🍳', title: 'Kitchen & Food Management', desc: 'Specialized module for restaurant operations. Monitor food inventory in real-time, get expiration alerts, optimize recipes, and reduce waste with AI-powered predictions.' },
+                    { icon: '📍', title: 'Real-Time Location Tracking', desc: 'GPS and RFID integration for real-time asset location. Find any asset instantly across multiple facilities or locations worldwide.' },
+                    { icon: '🔧', title: 'Predictive Maintenance', desc: 'AI predicts equipment failures before they occur. Schedule maintenance proactively to minimize downtime and extend asset lifespan.' },
+                    { icon: '📈', title: 'Utilization Analytics', desc: 'Identify underutilized assets and optimize allocation. Data-driven insights reveal opportunities for cost savings and efficiency improvements.' },
+                    { icon: '🔗', title: 'ERP Integration', desc: 'Seamless integration with SAP, Oracle, and other ERP systems. Bi-directional data sync ensures consistency across all platforms.' }
+                ],
+                benefits: [
+                    '40% Cost Reduction',
+                    'Real-Time Asset Visibility',
+                    'Food Waste Minimization',
+                    'Recipe Optimization',
+                    'Predictive Maintenance',
+                    'Multi-Location Support'
+                ],
+                workflow: [
+                    { icon: '📥', title: 'Asset Entry', desc: 'Register new asset' },
+                    { icon: '🏷️', title: 'Tag & Track', desc: 'RFID/QR tagging' },
+                    { icon: '📊', title: 'Monitor', desc: 'Real-time tracking' },
+                    { icon: '⚠️', title: 'AI Alerts', desc: 'Predictive warnings' },
+                    { icon: '🔄', title: 'Optimize', desc: 'Automated actions' }
+                ],
+                techStack: ['IoT Sensors', 'RFID Technology', 'GPS Tracking', 'Machine Learning', 'Computer Vision', 'ERP Integration APIs']
+            },
+            ecosense: {
+                name: 'ECOSENSE AI',
+                tagline: 'Smart Waste Management',
+                badge: 'Smart City Solution',
+                badgeBg: 'linear-gradient(135deg, #00D9A5, #00B388)',
+                iconBg: 'rgba(0,217,165,0.15)',
+                color: '#00D9A5',
+                gradient: 'linear-gradient(135deg, #00D9A5, #00B388)',
+                description: 'Revolutionary IoT-powered waste management system deployed across Qatar. AI-driven route optimization, real-time bin monitoring, and predictive collection scheduling for maximum efficiency and environmental impact.',
+                stats: [
+                    { value: '60%', label: 'Efficiency' },
+                    { value: '$5M+', label: 'Savings' },
+                    { value: 'Zero', label: 'Overflow' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <path d="M18 58V24L35 14L52 24V58" stroke="#00D9A5" stroke-width="2.5" fill="none"/>
+                    <rect x="26" y="32" width="14" height="26" rx="2" stroke="#00D9A5" stroke-width="2" fill="none"/>
+                    <circle cx="35" cy="24" r="5" fill="#00D9A5"/>
+                    <path d="M12 58H58" stroke="#00D9A5" stroke-width="2.5"/>
+                    <circle cx="54" cy="20" r="10" stroke="#00D9A5" stroke-width="2.5" fill="none"/>
+                    <path d="M50 20L53 23L59 17" stroke="#00D9A5" stroke-width="2"/>
+                </svg>`,
+                features: [
+                    { icon: '📡', title: 'IoT Sensor Network', desc: 'Smart sensors in every bin across Qatar monitor fill levels, temperature, and collection status. Real-time data transmitted via cellular and LoRaWAN networks.' },
+                    { icon: '🗺️', title: 'AI Route Optimization', desc: 'Dynamic route planning based on bin fill levels, traffic conditions, and collection priorities. Reduces fuel costs by up to 60% and minimizes collection time.' },
+                    { icon: '📱', title: 'Driver Mobile App', desc: 'Real-time notifications sent to drivers with optimized routes. Turn-by-turn navigation, collection verification, and issue reporting in one app.' },
+                    { icon: '🔔', title: 'Predictive Alerts', desc: 'AI predicts overflow events before they occur based on historical patterns and usage trends. Proactive collection prevents overflow and maintains cleanliness.' },
+                    { icon: '📊', title: 'City Dashboard', desc: 'Comprehensive real-time dashboard for city managers. View all bin statuses, collection metrics, driver locations, and environmental impact analytics.' },
+                    { icon: '🌱', title: 'Environmental Impact', desc: 'Track CO2 reduction, fuel savings, and efficiency improvements. Generate sustainability reports for stakeholders and regulatory compliance.' }
+                ],
+                benefits: [
+                    '60% Route Efficiency Gain',
+                    'Zero Overflow Events',
+                    'Real-Time Monitoring',
+                    'Automatic Driver Dispatch',
+                    'Environmental Analytics',
+                    'Fuel Cost Reduction'
+                ],
+                workflow: [
+                    { icon: '📊', title: 'Monitor', desc: 'Sensors track fill levels' },
+                    { icon: '🤖', title: 'AI Analysis', desc: 'Predict collection needs' },
+                    { icon: '🗺️', title: 'Route Plan', desc: 'Optimize collection route' },
+                    { icon: '📱', title: 'Notify Driver', desc: 'Send to mobile app' },
+                    { icon: '✅', title: 'Collect', desc: 'Complete & verify' }
+                ],
+                techStack: ['IoT Sensors', 'LoRaWAN Network', 'Route Optimization AI', 'Real-Time GPS', 'Mobile Applications', 'Cloud Analytics']
+            },
+            marketmind: {
+                name: 'MARKETMIND AI',
+                tagline: 'Autonomous E-Commerce',
+                badge: 'AI Commerce Platform',
+                badgeBg: 'linear-gradient(135deg, #FF6B6B, #EE5A5A)',
+                iconBg: 'rgba(255,107,107,0.15)',
+                color: '#FF6B6B',
+                gradient: 'linear-gradient(135deg, #FF6B6B, #EE5A5A)',
+                description: 'Fully autonomous AI-powered e-commerce platform that operates 24/7 without human intervention. Self-managing inventory, dynamic pricing, automated marketing campaigns across all social media, and intelligent customer service.',
+                stats: [
+                    { value: '24/7', label: 'Autonomous' },
+                    { value: '300%', label: 'ROI' },
+                    { value: '98%', label: 'Satisfaction' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="24" r="16" stroke="#FF6B6B" stroke-width="2.5" fill="none"/>
+                    <path d="M28 24L33 29L42 20" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M12 48H58L50 62H20L12 48Z" stroke="#FF6B6B" stroke-width="2.5" fill="none"/>
+                    <rect x="24" y="52" width="8" height="5" rx="1" fill="#FF6B6B"/>
+                    <rect x="38" y="52" width="8" height="5" rx="1" fill="#FF6B6B"/>
+                </svg>`,
+                features: [
+                    { icon: '🤖', title: 'Fully Autonomous Operation', desc: 'AI manages everything automatically—inventory, pricing, marketing, customer service. The platform runs 24/7 without human intervention, making decisions in real-time.' },
+                    { icon: '📣', title: 'Omnichannel Marketing', desc: 'Automated campaigns across Facebook, Instagram, TikTok, Twitter, and Google Ads. AI creates content, optimizes ad spend, and tests variations automatically.' },
+                    { icon: '💬', title: 'AI Customer Service', desc: 'Intelligent chatbot answers customer queries instantly in multiple languages. Handles product questions, order tracking, returns, and complex support issues.' },
+                    { icon: '📦', title: 'Smart Inventory', desc: 'AI predicts demand and automatically reorders stock from suppliers. Never run out of bestsellers, never overstock slow movers. Optimal inventory at all times.' },
+                    { icon: '💰', title: 'Dynamic Pricing', desc: 'Real-time price optimization based on demand, competition, inventory levels, and market conditions. Maximizes profit margins while remaining competitive.' },
+                    { icon: '📈', title: 'Sales Analytics', desc: 'Deep insights into customer behavior, product performance, marketing ROI, and sales trends. AI identifies opportunities and implements improvements automatically.' }
+                ],
+                benefits: [
+                    '24/7 Autonomous Operations',
+                    '300% ROI Increase',
+                    'Multi-Platform Marketing',
+                    'Instant Customer Support',
+                    'Zero Stock-Outs',
+                    'Dynamic Price Optimization'
+                ],
+                workflow: [
+                    { icon: '🛒', title: 'Customer Visits', desc: 'AI personalizes experience' },
+                    { icon: '🤖', title: 'AI Assist', desc: 'Answers queries instantly' },
+                    { icon: '💳', title: 'Purchase', desc: 'Secure checkout' },
+                    { icon: '📦', title: 'Auto Fulfill', desc: 'AI manages logistics' },
+                    { icon: '📢', title: 'Market', desc: 'AI promotes products' }
+                ],
+                techStack: ['E-Commerce Platform', 'Natural Language AI', 'Social Media APIs', 'Dynamic Pricing Engine', 'Inventory Management', 'Marketing Automation']
+            },
+            designforge: {
+                name: 'DESIGNFORGE AI',
+                tagline: 'Enterprise Creative Suite',
+                badge: 'Creative AI Platform',
+                badgeBg: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                iconBg: 'rgba(255,215,0,0.15)',
+                color: '#FFD700',
+                gradient: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                description: 'Complete AI-powered marketing and design solution for large enterprises. Generate brand-consistent content at scale—graphics, copy, videos, and campaigns—10x faster than traditional methods with 80% cost savings.',
+                stats: [
+                    { value: '10x', label: 'Faster' },
+                    { value: '80%', label: 'Cost Save' },
+                    { value: '∞', label: 'Scale' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <rect x="8" y="12" width="30" height="42" rx="3" stroke="#FFD700" stroke-width="2.5" fill="none"/>
+                    <circle cx="23" cy="28" r="8" stroke="#FFD700" stroke-width="2" fill="none"/>
+                    <rect x="15" y="42" width="16" height="6" rx="2" fill="#FFD700"/>
+                    <path d="M48 16L62 30L48 54L42 50L54 30L42 22L48 16Z" fill="#FFD700"/>
+                    <circle cx="55" cy="48" r="7" stroke="#FFD700" stroke-width="2" fill="none"/>
+                </svg>`,
+                features: [
+                    { icon: '🎨', title: 'AI Design Generation', desc: 'Create professional graphics, banners, social media posts, and print materials in seconds. AI understands your brand guidelines and generates on-brand designs automatically.' },
+                    { icon: '📝', title: 'Content Creation', desc: 'AI writes compelling marketing copy, product descriptions, email campaigns, blog posts, and ad copy. Adapts tone and style to match your brand voice.' },
+                    { icon: '🎬', title: 'Video Production', desc: 'Automated video creation with AI-generated scripts, voiceovers, animations, and editing. Create professional videos without cameras or studios.' },
+                    { icon: '📱', title: 'Multi-Channel Publishing', desc: 'Automatically resize and adapt content for every platform—Instagram, Facebook, LinkedIn, web, print. One design, infinite variations.' },
+                    { icon: '🎯', title: 'Brand Consistency', desc: 'AI ensures all content follows brand guidelines. Automatic enforcement of colors, fonts, logos, spacing, and style rules across all materials.' },
+                    { icon: '📊', title: 'Performance Analytics', desc: 'Track creative performance across channels. AI learns which designs and copy perform best, automatically optimizing future content.' }
+                ],
+                benefits: [
+                    '10x Faster Creation',
+                    '80% Cost Reduction',
+                    'Brand Consistency',
+                    'Infinite Scalability',
+                    'Multi-Channel Export',
+                    'Performance Optimization'
+                ],
+                workflow: [
+                    { icon: '💡', title: 'Brief', desc: 'Describe your needs' },
+                    { icon: '🤖', title: 'AI Generate', desc: 'Creates variations' },
+                    { icon: '✏️', title: 'Refine', desc: 'Adjust as needed' },
+                    { icon: '✅', title: 'Approve', desc: 'Select favorites' },
+                    { icon: '📤', title: 'Publish', desc: 'Auto-deploy everywhere' }
+                ],
+                techStack: ['Generative AI Models', 'Computer Vision', 'Natural Language Generation', 'Video Synthesis', 'Brand Guidelines Engine', 'Multi-Platform APIs']
+            },
+            autoparts: {
+                name: 'AUTOPARTS AI',
+                tagline: 'Intelligent Automotive Platform',
+                badge: 'Automotive Solution',
+                badgeBg: 'linear-gradient(135deg, #00B4D8, #0096C7)',
+                iconBg: 'rgba(0,180,216,0.15)',
+                color: '#00B4D8',
+                gradient: 'linear-gradient(135deg, #00B4D8, #0096C7)',
+                description: 'World-class AI-powered automotive parts marketplace with 8 integrated AI systems. Features OCR license plate scanning, VIN decoding, OBD2 diagnostics, and 100% accurate parts compatibility matching for any vehicle.',
+                stats: [
+                    { value: '100%', label: 'Compatible' },
+                    { value: '8', label: 'AI Systems' },
+                    { value: '$5K+', label: 'Tool Value' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <path d="M12 38L20 24H50L58 38V48H12V38Z" stroke="#00B4D8" stroke-width="2.5" fill="none"/>
+                    <circle cx="22" cy="48" r="7" stroke="#00B4D8" stroke-width="2.5" fill="none"/>
+                    <circle cx="48" cy="48" r="7" stroke="#00B4D8" stroke-width="2.5" fill="none"/>
+                    <rect x="28" y="30" width="14" height="8" rx="2" stroke="#00B4D8" stroke-width="2" fill="none"/>
+                    <circle cx="56" cy="20" r="10" fill="#00B4D8"/>
+                    <path d="M52 20H60M56 16V24" stroke="#050508" stroke-width="2"/>
+                </svg>`,
+                features: [
+                    { icon: '📸', title: 'OCR License Plate Scanning', desc: 'Take a photo of any license plate and instantly identify the vehicle. Our AI extracts registration details and retrieves complete vehicle specifications.' },
+                    { icon: '🔢', title: 'VIN Decoder', desc: 'Scan or enter VIN to get complete vehicle information—make, model, year, engine type, transmission, and factory-installed options. 100% accurate database.' },
+                    { icon: '🔧', title: 'OBD2 Diagnostics', desc: 'Professional-grade diagnostics tool reads error codes, monitors engine performance, tracks fuel efficiency, and provides repair recommendations.' },
+                    { icon: '✅', title: 'Compatibility Matching', desc: '95-100% accurate parts compatibility verification. AI cross-references multiple databases to ensure perfect fit for your specific vehicle.' },
+                    { icon: '💬', title: 'AI Chat Assistant', desc: '24/7 intelligent assistant answers technical questions, provides installation guides, troubleshoots issues, and recommends parts based on your needs.' },
+                    { icon: '🏪', title: 'Multi-Vendor Marketplace', desc: 'Compare prices from hundreds of verified suppliers. AI finds the best deals, checks inventory, and recommends trusted sellers.' }
+                ],
+                benefits: [
+                    '100% Compatibility Accuracy',
+                    '8 Integrated AI Systems',
+                    'OCR & VIN Technology',
+                    'Professional Diagnostics',
+                    'Multi-Vendor Comparison',
+                    '24/7 AI Support'
+                ],
+                workflow: [
+                    { icon: '📱', title: 'Identify', desc: 'Scan plate or VIN' },
+                    { icon: '🚗', title: 'Vehicle Data', desc: 'Get full specs' },
+                    { icon: '🔍', title: 'Find Parts', desc: 'AI matches compatible parts' },
+                    { icon: '💰', title: 'Compare', desc: 'Best prices shown' },
+                    { icon: '🛒', title: 'Order', desc: 'Purchase with confidence' }
+                ],
+                techStack: ['OCR Technology', 'VIN Database APIs', 'OBD2 Protocol', 'Computer Vision', 'Parts Compatibility AI', 'Multi-Vendor Integration']
+            },
+            whisperlearn: {
+                name: 'WHISPERLEARN AI',
+                tagline: 'Intelligent Lecture Transcription',
+                badge: 'EdTech AI Platform',
+                badgeBg: 'linear-gradient(135deg, #FF9500, #FF6B00)',
+                iconBg: 'rgba(255,149,0,0.15)',
+                color: '#FF9500',
+                gradient: 'linear-gradient(135deg, #FF9500, #FF6B00)',
+                description: 'Revolutionary AI-powered educational platform that transforms lecture recordings into comprehensive, easy-to-understand study notes. Students can upload audio files up to 1GB for instant transcription and intelligent note generation using advanced LLM technology.',
+                stats: [
+                    { value: '1GB', label: 'Max Upload' },
+                    { value: '100%', label: 'Accuracy' },
+                    { value: '10x', label: 'Study Speed' }
+                ],
+                icon: `<svg viewBox="0 0 70 70" fill="none">
+                    <circle cx="35" cy="20" r="14" stroke="#FF9500" stroke-width="2.5" fill="none"/>
+                    <path d="M35 6V20M35 20L28 27M35 20L42 27" stroke="#FF9500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="10" y="38" width="50" height="26" rx="3" stroke="#FF9500" stroke-width="2.5" fill="none"/>
+                    <path d="M18 48H52M18 54H52M18 60H42" stroke="#FF9500" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="20" cy="20" r="8" stroke="#FF9500" stroke-width="2" opacity="0.3"/>
+                    <circle cx="50" cy="20" r="8" stroke="#FF9500" stroke-width="2" opacity="0.3"/>
+                    <path d="M20 20L28 28" stroke="#FF9500" stroke-width="1.5" opacity="0.4"/>
+                    <path d="M50 20L42 28" stroke="#FF9500" stroke-width="1.5" opacity="0.4"/>
+                </svg>`,
+                features: [
+                    { icon: '🎤', title: 'High-Capacity Audio Processing', desc: 'Upload lecture recordings up to 1GB in size. Support for all major audio formats including MP3, WAV, M4A, and more. Process hours of lectures in a single upload.' },
+                    { icon: '🔊', title: 'Advanced Speech-to-Text', desc: 'Powered by state-of-the-art Whisper AI technology for 99%+ transcription accuracy. Handles multiple speakers, accents, and technical terminology with precision.' },
+                    { icon: '🤖', title: 'LLM-Powered Note Generation', desc: 'Advanced Large Language Models transform raw transcriptions into structured, comprehensive lecture notes. Organizes content into topics, highlights key concepts, and creates summaries.' },
+                    { icon: '📚', title: 'Comprehensive Content Extraction', desc: 'Zero information loss—every important detail from the lecture is captured. AI identifies definitions, formulas, examples, and critical points for effective studying.' },
+                    { icon: '✨', title: 'Easy-to-Understand Formatting', desc: 'Notes are formatted for maximum readability with clear headings, bullet points, numbered lists, and visual hierarchy. Complex concepts are explained in simple terms.' },
+                    { icon: '📱', title: 'Multi-Language Support', desc: 'Transcribe and generate notes in 90+ languages. Perfect for international students and multilingual educational institutions worldwide.' }
+                ],
+                benefits: [
+                    'Upload Up to 1GB Audio',
+                    'Instant Transcription',
+                    'AI-Generated Study Notes',
+                    'Zero Information Loss',
+                    '90+ Languages Supported',
+                    'Mobile & Desktop Access'
+                ],
+                workflow: [
+                    { icon: '📤', title: 'Upload', desc: 'Drag & drop lecture audio' },
+                    { icon: '🎧', title: 'Transcribe', desc: 'AI converts to text' },
+                    { icon: '🧠', title: 'Analyze', desc: 'LLM processes content' },
+                    { icon: '📝', title: 'Generate', desc: 'Create study notes' },
+                    { icon: '💾', title: 'Study', desc: 'Download & review' }
+                ],
+                techStack: ['OpenAI Whisper', 'Large Language Models', 'Natural Language Processing', 'Multi-Format Audio Processing', 'Cloud Storage', 'Real-Time Transcription']
+            }
+        };
+
+        function openModal(serviceId) {
+            const service = modalData[serviceId];
+            if (!service) return;
+
+            const modalContainer = document.getElementById('modalContainer');
+            
+            const modalHTML = `
+                <div class="modal-bg-glow modal-glow-1" style="background: radial-gradient(circle, ${service.color}, transparent);"></div>
+                <div class="modal-bg-glow modal-glow-2" style="background: radial-gradient(circle, ${service.color}, transparent);"></div>
+                
+                <div class="modal-header" style="--card-gradient: ${service.gradient}; --tagline-color: ${service.color}">
+                    <div class="modal-header-content">
+                        <div class="modal-icon-large" style="--icon-bg: ${service.iconBg}; --card-gradient: ${service.gradient}">
+                            ${service.icon}
+                        </div>
+                        <div class="modal-header-text">
+                            <div class="modal-badge" style="background: ${service.badgeBg}">${service.badge}</div>
+                            <h2 class="modal-title">${service.name}</h2>
+                            <p class="modal-tagline" style="color: ${service.color}">${service.tagline}</p>
+                            <p class="modal-description">${service.description}</p>
+                            ${service.stats ? `
+                                <div class="modal-stats-row">
+                                    ${service.stats.map(stat => `
+                                        <div class="modal-stat-box" style="--tagline-color: ${service.color}">
+                                            <div class="modal-stat-value">${stat.value}</div>
+                                            <div class="modal-stat-label">${stat.label}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Features Section -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
+                            Core Features & Capabilities
+                        </h3>
+                        <div class="features-grid">
+                            ${service.features.map(feature => `
+                                <div class="feature-card" style="--card-gradient: ${service.gradient}; --tagline-color: ${service.color}">
+                                    <div class="feature-card-header">
+                                        <div class="feature-icon-box" style="background: ${service.iconBg}">
+                                            ${feature.icon}
+                                        </div>
+                                        <h4>${feature.title}</h4>
+                                    </div>
+                                    <p>${feature.desc}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Benefits -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
+                            Enterprise Benefits
+                        </h3>
+                        <div class="benefits-showcase-modal">
+                            ${service.benefits.map(benefit => `
+                                <div class="benefit-pill" style="--icon-bg: ${service.iconBg}; --cta-color: ${service.color}">
+                                    <div class="benefit-pill-icon">✓</div>
+                                    <span>${benefit}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Workflow Diagram -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
+                            How It Works
+                        </h3>
+                        <div class="workflow-diagram">
+                            <div class="workflow-steps">
+                                ${service.workflow.map((step, index) => `
+                                    <div class="workflow-step">
+                                        <div class="workflow-step-icon" style="--icon-bg: ${service.iconBg}; --cta-color: ${service.color}">
+                                            ${step.icon}
+                                        </div>
+                                        <h4>Step ${index + 1}: ${step.title}</h4>
+                                        <p>${step.desc}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technology Stack -->
+                    <div class="modal-section">
+                        <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
+                            Technology Stack
+                        </h3>
+                        <div class="tech-stack">
+                            ${service.techStack.map(tech => `
+                                <div class="tech-badge">${tech}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="modal-cta-section">
+                        <h3>Ready to Transform Your Enterprise?</h3>
+                        <p>Schedule a personalized demo with our team and discover how ${service.name} can revolutionize your operations. See the platform in action with your specific use cases.</p>
+                        <div class="modal-cta-buttons">
+                            <a href="#contact" class="btn btn-primary btn-lg" onclick="closeModal()">Schedule Demo →</a>
+                            <a href="#contact" class="btn btn-outline btn-lg" onclick="closeModal()">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modalContainer.innerHTML = modalHTML;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Modal close handlers
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modalOverlay')) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        function openMobileMenu() {
+            mobileMenuToggle.classList.add('active');
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuToggle.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>

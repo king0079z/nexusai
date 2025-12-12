@@ -1,0 +1,22 @@
+{
+  "name": "nexus-ai-platform",
+  "version": "1.0.0",
+  "description": "NEXUS AI - Revolutionary Enterprise Intelligence Platform with 7 AI solutions",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ai",
+    "artificial-intelligence",
+    "enterprise",
+    "machine-learning",
+    "automation",
+    "nexus-ai"
+  ],
+  "author": "NEXUS AI Team",
+  "license": "UNLICENSED",
+  "private": true
+}
+

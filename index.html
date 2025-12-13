@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='logoGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F5D4'/%3E%3Cstop offset='50%25' style='stop-color:%237B61FF'/%3E%3Cstop offset='100%25' style='stop-color:%23FF6B6B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='8' fill='url(%23logoGrad)'/%3E%3Ccircle cx='40' cy='15' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='65' cy='40' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='40' cy='65' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Ccircle cx='15' cy='40' r='4' fill='url(%23logoGrad)' opacity='0.8'/%3E%3Cline x1='40' y1='32' x2='40' y2='19' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='48' y1='40' x2='61' y2='40' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='40' y1='48' x2='40' y2='61' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Cline x1='32' y1='40' x2='19' y2='40' stroke='url(%23logoGrad)' stroke-width='1.5' opacity='0.4'/%3E%3Ccircle cx='40' cy='40' r='32' stroke='url(%23logoGrad)' stroke-width='1' fill='none' opacity='0.3'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Tajawal:wght@400;500;600;700;800;900&family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -561,6 +561,74 @@
             background: rgba(0,245,212,0.1);
             border-color: var(--primary);
             transform: translateY(-2px);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-switcher:hover {
+            background: rgba(0,245,212,0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* RTL Support */
+        body[dir="rtl"] {
+            direction: rtl;
+            font-family: 'Tajawal', 'Almarai', 'Inter', sans-serif;
+        }
+
+        body[dir="rtl"] h1,
+        body[dir="rtl"] h2,
+        body[dir="rtl"] h3,
+        body[dir="rtl"] h4,
+        body[dir="rtl"] .section-title,
+        body[dir="rtl"] .modal-title,
+        body[dir="rtl"] .service-name {
+            font-family: 'Almarai', 'Tajawal', sans-serif;
+            font-weight: 800;
+        }
+
+        body[dir="rtl"] .logo-text,
+        body[dir="rtl"] .hero h1,
+        body[dir="rtl"] .section-title {
+            font-family: 'Almarai', 'Tajawal', sans-serif;
+        }
+
+        body[dir="rtl"] .nav-links,
+        body[dir="rtl"] .hero-cta,
+        body[dir="rtl"] .services-grid,
+        body[dir="rtl"] .benefits-grid,
+        body[dir="rtl"] .footer-grid {
+            direction: rtl;
+        }
+
+        body[dir="rtl"] .logo {
+            flex-direction: row-reverse;
+        }
+
+        body[dir="rtl"] .nav-links a::after {
+            left: auto;
+            right: 0;
+        }
+
+        body[dir="rtl"] .service-cta-arrow {
+            transform: scaleX(-1);
+        }
+
+        body[dir="rtl"] .service-card:hover .service-cta-arrow {
+            transform: scaleX(-1) translateX(-8px);
         }
 
         /* Hero Section */
@@ -2643,7 +2711,10 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div style="display: flex; align-items: center; gap: 15px;">
-            <a href="#contact" class="btn btn-primary">Get Started →</a>
+            <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                <span id="langText">العربية</span>
+            </button>
+            <a href="#contact" class="btn btn-primary" data-i18n="nav.getStarted">Get Started →</a>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                 <span></span>
                 <span></span>
@@ -2673,39 +2744,39 @@
         <div class="hero-content">
             <div class="hero-badge fade-in">
                 <span class="badge-pulse"></span>
-                Transforming Enterprises with AI
+                <span data-i18n="hero.badge">Transforming Enterprises with AI</span>
         </div>
             <h1 class="fade-in">
-                Enterprise Intelligence<br>
-                <span class="gradient-text">Redefined</span>
+                <span data-i18n="hero.title">Enterprise Intelligence</span><br>
+                <span class="gradient-text" data-i18n="hero.titleHighlight">Redefined</span>
             </h1>
-            <p class="fade-in">
+            <p class="fade-in" data-i18n="hero.description">
                 NEXUS AI delivers cutting-edge artificial intelligence solutions that automate workflows, optimize operations, and unlock unprecedented efficiency for enterprises, educational institutions, and organizations across all industries.
             </p>
             <div class="hero-cta fade-in">
-                <a href="#services" class="btn btn-primary btn-lg">Explore Services →</a>
-                <a href="#contact" class="btn btn-outline btn-lg">Schedule Demo</a>
-        </div>
+                <a href="#services" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Explore Services →</a>
+                <a href="#contact" class="btn btn-outline btn-lg" data-i18n="hero.cta2">Schedule Demo</a>
+            </div>
             <div class="hero-features">
                 <div class="hero-feature fade-in">
                     <div class="hero-feature-icon">⚡</div>
-                    <h3>Real-Time AI</h3>
-                    <p>Lightning-fast processing for instant results</p>
+                    <h3 data-i18n="hero.feature1">Real-Time AI</h3>
+                    <p data-i18n="hero.feature1Desc">Lightning-fast processing for instant results</p>
                 </div>
                 <div class="hero-feature fade-in">
                     <div class="hero-feature-icon">🔒</div>
-                    <h3>Enterprise Security</h3>
-                    <p>Bank-grade encryption and compliance</p>
+                    <h3 data-i18n="hero.feature2">Enterprise Security</h3>
+                    <p data-i18n="hero.feature2Desc">Bank-grade encryption and compliance</p>
                 </div>
                 <div class="hero-feature fade-in">
                     <div class="hero-feature-icon">🌐</div>
-                    <h3>Global Scale</h3>
-                    <p>Infrastructure across 25+ countries</p>
+                    <h3 data-i18n="hero.feature3">Global Scale</h3>
+                    <p data-i18n="hero.feature3Desc">Infrastructure across 25+ countries</p>
                 </div>
                 <div class="hero-feature fade-in">
                     <div class="hero-feature-icon">🤖</div>
-                    <h3>7 AI Platforms</h3>
-                    <p>Proprietary models trained on billions of data points</p>
+                    <h3 data-i18n="hero.feature4">7 AI Platforms</h3>
+                    <p data-i18n="hero.feature4Desc">Proprietary models trained on billions of data points</p>
                 </div>
             </div>
         </div>
@@ -2718,9 +2789,9 @@
     <!-- Services Section -->
     <section id="services">
         <div class="section-header">
-            <span class="section-tag">Our Services</span>
-            <h2 class="section-title">Seven Revolutionary AI Platforms</h2>
-            <p class="section-subtitle">
+            <span class="section-tag" data-i18n="services.tag">Our Services</span>
+            <h2 class="section-title" data-i18n="services.title">Seven Revolutionary AI Platforms</h2>
+            <p class="section-subtitle" data-i18n="services.subtitle">
                 Each platform is engineered to solve complex enterprise challenges, delivering measurable results and transformative efficiency gains across industries.
             </p>
         </div>
@@ -2757,7 +2828,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('docusynth'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2797,7 +2868,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('assetvault'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2837,7 +2908,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('ecosense'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2876,7 +2947,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('marketmind'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2915,7 +2986,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('designforge'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2955,7 +3026,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('autoparts'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -2995,7 +3066,7 @@
                         </div>
                     </div>
                     <a href="#" class="service-cta" onclick="openModal('whisperlearn'); return false;">
-                        <span>Learn More</span>
+                        <span data-i18n="services.learnMore">Learn More</span>
                         <div class="service-cta-arrow">→</div>
                     </a>
                 </div>
@@ -3006,9 +3077,9 @@
     <!-- Future Projects Section -->
     <section class="future-projects" id="pipeline">
         <div class="section-header">
-            <span class="section-tag">Innovation Pipeline</span>
-            <h2 class="section-title">Next-Generation AI Platforms</h2>
-            <p class="section-subtitle">
+            <span class="section-tag" data-i18n="pipeline.tag">Innovation Pipeline</span>
+            <h2 class="section-title" data-i18n="pipeline.title">Next-Generation AI Platforms</h2>
+            <p class="section-subtitle" data-i18n="pipeline.subtitle">
                 Our R&D team is developing 10 groundbreaking AI platforms set to revolutionize additional industries. Here's what's coming next.
             </p>
         </div>
@@ -3210,18 +3281,18 @@
 
         <!-- Pipeline CTA -->
         <div class="pipeline-cta">
-            <h3>Want to Partner on These Innovations?</h3>
-            <p>We're seeking strategic partners and early adopters for our next-generation platforms. Get exclusive beta access and help shape the future of AI.</p>
-            <a href="#contact" class="btn btn-primary btn-lg">Join Innovation Program →</a>
+            <h3 data-i18n="pipeline.ctaTitle">Want to Partner on These Innovations?</h3>
+            <p data-i18n="pipeline.ctaDesc">We're seeking strategic partners and early adopters for our next-generation platforms. Get exclusive beta access and help shape the future of AI.</p>
+            <a href="#contact" class="btn btn-primary btn-lg" data-i18n="pipeline.ctaButton">Join Innovation Program →</a>
         </div>
     </section>
 
     <!-- Benefits Section -->
     <section class="benefits-showcase" id="benefits">
         <div class="section-header">
-            <span class="section-tag">Enterprise Benefits</span>
-            <h2 class="section-title">Why Enterprises Choose NEXUS AI</h2>
-            <p class="section-subtitle">
+            <span class="section-tag" data-i18n="benefits.tag">Enterprise Benefits</span>
+            <h2 class="section-title" data-i18n="benefits.title">Why Enterprises Choose NEXUS AI</h2>
+            <p class="section-subtitle" data-i18n="benefits.subtitle">
                 Our AI solutions deliver transformative benefits that drive sustainable growth, operational excellence, and competitive advantage.
             </p>
         </div>
@@ -3289,9 +3360,9 @@
     <section class="contact" id="contact">
         <div class="contact-container">
             <div class="contact-header">
-                <span class="section-tag">Get In Touch</span>
-                <h2>Transform Your Enterprise Today</h2>
-                <p>
+                <span class="section-tag" data-i18n="contact.tag">Get In Touch</span>
+                <h2 data-i18n="contact.title">Transform Your Enterprise Today</h2>
+                <p data-i18n="contact.subtitle">
                     Schedule a personalized demo and discover how NEXUS AI can revolutionize your operations. Our team responds within 24 hours.
                 </p>
                 
@@ -3302,7 +3373,7 @@
                             📞
                         </div>
                         <div>
-                            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Call Us</div>
+                            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;" data-i18n="contact.callUs">Call Us</div>
                             <a href="tel:+97455608507" style="font-size: 1.6rem; font-weight: 700; color: var(--text-primary); text-decoration: none; font-family: 'Space Grotesk', sans-serif; transition: all 0.3s ease;" onmouseover="this.style.color='#00F5D4'" onmouseout="this.style.color='var(--text-primary)'">+974 5560 8507</a>
                         </div>
                     </div>
@@ -3311,26 +3382,26 @@
             <form>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>First Name</label>
+                        <label data-i18n="contact.form.firstName">First Name</label>
                         <input type="text" placeholder="John" required>
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
+                        <label data-i18n="contact.form.lastName">Last Name</label>
                         <input type="text" placeholder="Smith" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Work Email</label>
+                    <label data-i18n="contact.form.email">Work Email</label>
                     <input type="email" placeholder="john.smith@company.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Company Name</label>
+                    <label data-i18n="contact.form.company">Company Name</label>
                     <input type="text" placeholder="Acme Corporation" required>
                 </div>
                 <div class="form-group">
-                    <label>Service Interest</label>
+                    <label data-i18n="contact.form.serviceInterest">Service Interest</label>
                     <select required>
-                        <option value="">Select a service...</option>
+                        <option value="" data-i18n="contact.form.selectService">Select a service...</option>
                         <option>DocuSynth AI - Document Automation</option>
                         <option>AssetVault AI - Asset Management</option>
                         <option>EcoSense AI - Waste Management</option>
@@ -3345,10 +3416,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Message</label>
+                    <label data-i18n="contact.form.message">Message</label>
                     <textarea placeholder="Tell us about your business needs and challenges..." required></textarea>
                 </div>
-                <button type="submit" class="btn-submit">Schedule Demo →</button>
+                <button type="submit" class="btn-submit" data-i18n="contact.form.submit">Schedule Demo →</button>
             </form>
         </div>
     </section>
@@ -3388,12 +3459,12 @@
                     </div>
                     <h3><span>NEXUS</span> AI</h3>
                 </div>
-                <p>
+                <p data-i18n="footer.description">
                     Pioneering the future of enterprise artificial intelligence. Seven revolutionary platforms. One transformative vision for business excellence.
                 </p>
             </div>
             <div class="footer-column">
-                <h4>Services</h4>
+                <h4 data-i18n="footer.services">Services</h4>
                 <ul>
                     <li><a href="#services">DocuSynth AI</a></li>
                     <li><a href="#services">AssetVault AI</a></li>
@@ -3405,7 +3476,7 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Company</h4>
+                <h4 data-i18n="footer.company">Company</h4>
                 <ul>
                     <li><a href="#services">About Us</a></li>
                     <li><a href="#pipeline">Innovation Pipeline</a></li>
@@ -3416,7 +3487,7 @@
                 </ul>
             </div>
             <div class="footer-column">
-                <h4>Resources</h4>
+                <h4 data-i18n="footer.resources">Resources</h4>
                 <ul>
                     <li><a href="#">Documentation</a></li>
                     <li><a href="#">API Reference</a></li>
@@ -3427,7 +3498,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 NEXUS AI. All rights reserved. Pioneering Enterprise Intelligence.</p>
+            <p data-i18n="footer.copyright">© 2025 NEXUS AI. All rights reserved. Pioneering Enterprise Intelligence.</p>
             <div class="footer-legal">
                 <a href="privacy-policy.html">Privacy Policy</a>
                 <a href="terms-of-service.html">Terms of Service</a>
@@ -3991,11 +4062,305 @@
             }
         };
 
+        // Arabic Modal Translations
+        const modalDataAr = {
+            docusynth: {
+                name: 'دوكوسينث AI',
+                tagline: 'أتمتة المستندات الذكية',
+                badge: 'المنتج الرئيسي',
+                description: 'منصة توقيع إلكتروني ثورية للمؤسسات مع تحليل مستندات متقدم مدعوم بالذكاء الاصطناعي. متكاملة بالكامل مع Microsoft Outlook المحلي لضمان أقصى درجات الأمان وأتمتة سير العمل بسلاسة.',
+                stats: [
+                    { value: '95%', label: 'وقت محفوظ' },
+                    { value: '100%', label: 'آمن' },
+                    { value: '$2.4M', label: 'متوسط التوفير' }
+                ],
+                features: [
+                    { icon: '🔐', title: 'تكامل Outlook المحلي', desc: 'أمان كامل مع تكامل مباشر مع بنية Outlook المحلية الخاصة بك. لا يوجد تعرض لبيانات الطرف الثالث، كل المعالجة تتم داخل بيئتك الآمنة.' },
+                    { icon: '🤖', title: 'تحليل المستندات المدعوم بالذكاء الاصطناعي', desc: 'يحلل الذكاء الاصطناعي المتقدم ويستخرج ويصحح المعلومات الرئيسية من أي نوع مستند تلقائياً. يتعلم من أنماط المستندات الخاصة بك لتحسين الدقة.' },
+                    { icon: '✉️', title: 'سير العمل القائم على البريد الإلكتروني', desc: 'يتلقى الموافقون الموافقات ويوافقون على المستندات بمجرد الرد على رسائل البريد الإلكتروني. لا حاجة لتسجيل الدخول إلى منصات إضافية أو التنقل في واجهات معقدة.' },
+                    { icon: '📊', title: 'التقارير التلقائية', desc: 'إنشاء تقارير شاملة عبر أوامر البريد الإلكتروني. يمكن للموافقين طلب ملخصات لجميع المستندات المعتمدة على الفور.' },
+                    { icon: '⚡', title: 'التوجيه الذكي', desc: 'يحدد الذكاء الاصطناعي مسارات الموافقة المثلى بناءً على نوع المستند والأولوية والتسلسل الهرمي التنظيمي. يقلل الاختناقات تلقائياً.' },
+                    { icon: '🔍', title: 'مسار التدقيق الكامل', desc: 'سجلات مقاومة للعبث لكل إجراء وطابع زمني وقرار موافقة. امتثال كامل لمتطلبات اللوائح والمعايير الصناعية.' }
+                ],
+                benefits: [
+                    '95% تقليل في وقت المعالجة',
+                    'صفر اعتماديات الطرف الثالث',
+                    'تصنيف المستندات التلقائي',
+                    'موافقات رد البريد الإلكتروني',
+                    'إنشاء تقارير فورية',
+                    'أمان على مستوى المؤسسات'
+                ],
+                workflow: [
+                    { icon: '📧', title: 'استلام البريد', desc: 'يصل المستند في Outlook' },
+                    { icon: '🤖', title: 'تحليل الذكاء الاصطناعي', desc: 'يستخرج الذكاء الاصطناعي البيانات الرئيسية' },
+                    { icon: '📤', title: 'التوجيه التلقائي', desc: 'يُرسل إلى الموافق' },
+                    { icon: '✅', title: 'موافقة البريد', desc: 'رد بسيط للموافقة' },
+                    { icon: '📝', title: 'اكتمال', desc: 'مُوقع ومؤرشف' }
+                ],
+                techStack: ['نماذج اللغة الكبيرة (LLM)', 'معالجة اللغة الطبيعية', 'التكامل المحلي', 'واجهات برمجة بروتوكول البريد الإلكتروني', 'مسار التدقيق البلوك تشين', 'تقنية OCR']
+            },
+            assetvault: {
+                name: 'أصول فولت AI',
+                tagline: 'ذكاء الأصول الشامل',
+                badge: 'حل مؤسسي',
+                description: 'منصة شاملة لإدارة الأصول المدعومة بالذكاء الاصطناعي للمؤسسات. تتبع الأصول المادية وإدارة المخزون ومراقبة موارد الطعام وتحسين وصفات المطابخ للمطاعم—كل ذلك في نظام موحد واحد.',
+                stats: [
+                    { value: '40%', label: 'تخفيض التكلفة' },
+                    { value: '3x', label: 'الكفاءة' },
+                    { value: '24/7', label: 'المراقبة' }
+                ],
+                features: [
+                    { icon: '📦', title: 'دورة حياة الأصول الكاملة', desc: 'تتبع كل أصل من الشراء إلى التخلص. مراقبة الاستهلاك وجداول الصيانة وتغييرات الموقع والاستخدام عبر مؤسستك بالكامل.' },
+                    { icon: '🍳', title: 'إدارة المطبخ والطعام', desc: 'وحدة متخصصة لعمليات المطاعم. مراقبة مخزون الطعام في الوقت الفعلي، الحصول على تنبيهات انتهاء الصلاحية، تحسين الوصفات، وتقليل النفايات مع توقعات مدعومة بالذكاء الاصطناعي.' },
+                    { icon: '📍', title: 'تتبع الموقع في الوقت الفعلي', desc: 'تكامل GPS وRFID لتحديد موقع الأصل في الوقت الفعلي. ابحث عن أي أصل على الفور عبر مرافق أو مواقع متعددة في جميع أنحاء العالم.' },
+                    { icon: '🔧', title: 'الصيانة التنبؤية', desc: 'يتنبأ الذكاء الاصطناعي بأعطال المعدات قبل حدوثها. جدولة الصيانة بشكل استباقي لتقليل وقت التوقف وإطالة عمر الأصل.' },
+                    { icon: '📈', title: 'تحليلات الاستخدام', desc: 'تحديد الأصول غير المستخدمة وتحسين التخصيص. تكشف الرؤى القائمة على البيانات عن فرص لتوفير التكاليف وتحسينات الكفاءة.' },
+                    { icon: '🔗', title: 'تكامل ERP', desc: 'تكامل سلس مع SAP وOracle وأنظمة ERP الأخرى. مزامنة البيانات ثنائية الاتجاه تضمن الاتساق عبر جميع المنصات.' }
+                ],
+                benefits: [
+                    '40% تخفيض التكلفة',
+                    'رؤية الأصول في الوقت الفعلي',
+                    'تقليل هدر الطعام',
+                    'تحسين الوصفات',
+                    'الصيانة التنبؤية',
+                    'دعم مواقع متعددة'
+                ],
+                workflow: [
+                    { icon: '📥', title: 'إدخال الأصل', desc: 'تسجيل أصل جديد' },
+                    { icon: '🏷️', title: 'الوسم والتتبع', desc: 'وسم RFID/QR' },
+                    { icon: '📊', title: 'مراقبة', desc: 'تتبع في الوقت الفعلي' },
+                    { icon: '⚠️', title: 'تنبيهات الذكاء الاصطناعي', desc: 'تحذيرات تنبؤية' },
+                    { icon: '🔄', title: 'تحسين', desc: 'إجراءات تلقائية' }
+                ],
+                techStack: ['مستشعرات IoT', 'تقنية RFID', 'تتبع GPS', 'تعلم الآلة', 'رؤية الكمبيوتر', 'واجهات تكامل ERP']
+            },
+            ecosense: {
+                name: 'إيكوسينس AI',
+                tagline: 'إدارة النفايات الذكية',
+                badge: 'حل المدينة الذكية',
+                description: 'نظام إدارة نفايات ثوري مدعوم بإنترنت الأشياء تم نشره في جميع أنحاء قطر. تحسين المسارات المدعوم بالذكاء الاصطناعي ومراقبة الحاويات في الوقت الفعلي وجدولة الجمع التنبؤية لأقصى كفاءة وتأثير بيئي.',
+                stats: [
+                    { value: '60%', label: 'الكفاءة' },
+                    { value: '$5M+', label: 'التوفير' },
+                    { value: 'صفر', label: 'الفيضان' }
+                ],
+                features: [
+                    { icon: '📡', title: 'شبكة مستشعرات IoT', desc: 'مستشعرات ذكية في كل حاوية عبر قطر تراقب مستويات الامتلاء ودرجة الحرارة وحالة الجمع. بيانات في الوقت الفعلي يتم نقلها عبر شبكات الهاتف المحمول وLoRaWAN.' },
+                    { icon: '🗺️', title: 'تحسين المسار بالذكاء الاصطناعي', desc: 'تخطيط مسار ديناميكي بناءً على مستويات امتلاء الحاويات وظروف المرور وأولويات الجمع. يقلل تكاليف الوقود بنسبة تصل إلى 60% ويقلل وقت الجمع.' },
+                    { icon: '📱', title: 'تطبيق السائق المحمول', desc: 'إشعارات في الوقت الفعلي تُرسل للسائقين مع مسارات محسّنة. التنقل خطوة بخطوة والتحقق من الجمع والإبلاغ عن المشاكل في تطبيق واحد.' },
+                    { icon: '🔔', title: 'تنبيهات تنبؤية', desc: 'يتنبأ الذكاء الاصطناعي بأحداث الفيضان قبل حدوثها بناءً على الأنماط التاريخية واتجاهات الاستخدام. الجمع الاستباقي يمنع الفيضان ويحافظ على النظافة.' },
+                    { icon: '📊', title: 'لوحة تحكم المدينة', desc: 'لوحة تحكم شاملة في الوقت الفعلي لمديري المدينة. عرض جميع حالات الحاويات ومقاييس الجمع ومواقع السائقين وتحليلات التأثير البيئي.' },
+                    { icon: '🌱', title: 'التأثير البيئي', desc: 'تتبع تقليل CO2 وتوفير الوقود وتحسينات الكفاءة. إنشاء تقارير الاستدامة لأصحاب المصلحة والامتثال التنظيمي.' }
+                ],
+                benefits: [
+                    '60% كسب كفاءة المسار',
+                    'صفر أحداث فيضان',
+                    'المراقبة في الوقت الفعلي',
+                    'إرسال السائق التلقائي',
+                    'تحليلات بيئية',
+                    'تقليل تكلفة الوقود'
+                ],
+                workflow: [
+                    { icon: '📊', title: 'مراقبة', desc: 'تتبع المستشعرات مستويات الامتلاء' },
+                    { icon: '🤖', title: 'تحليل الذكاء الاصطناعي', desc: 'توقع احتياجات الجمع' },
+                    { icon: '🗺️', title: 'تخطيط المسار', desc: 'تحسين مسار الجمع' },
+                    { icon: '📱', title: 'إشعار السائق', desc: 'إرسال إلى التطبيق المحمول' },
+                    { icon: '✅', title: 'جمع', desc: 'اكتمال والتحقق' }
+                ],
+                techStack: ['مستشعرات IoT', 'شبكة LoRaWAN', 'تحسين المسار بالذكاء الاصطناعي', 'GPS في الوقت الفعلي', 'تطبيقات محمولة', 'تحليلات السحابة']
+            },
+            marketmind: {
+                name: 'ماركت مايند AI',
+                tagline: 'التجارة الإلكترونية المستقلة',
+                badge: 'منصة التجارة الذكية',
+                description: 'منصة تجارة إلكترونية مدعومة بالذكاء الاصطناعي تعمل بالكامل 24/7 دون تدخل بشري. إدارة المخزون الذاتية والتسعير الديناميكي وحملات تسويقية تلقائية عبر جميع وسائل التواصل الاجتماعي وخدمة عملاء ذكية.',
+                stats: [
+                    { value: '24/7', label: 'مستقل' },
+                    { value: '300%', label: 'عائد الاستثمار' },
+                    { value: '98%', label: 'الرضا' }
+                ],
+                features: [
+                    { icon: '🤖', title: 'عمل مستقل بالكامل', desc: 'يدير الذكاء الاصطناعي كل شيء تلقائياً—المخزون والتسعير والتسويق وخدمة العملاء. تعمل المنصة 24/7 دون تدخل بشري، واتخاذ القرارات في الوقت الفعلي.' },
+                    { icon: '📣', title: 'التسويق متعدد القنوات', desc: 'حملات تلقائية عبر Facebook وInstagram وTikTok وTwitter وGoogle Ads. ينشئ الذكاء الاصطناعي المحتوى ويحسّن إنفاق الإعلانات واختبار الاختلافات تلقائياً.' },
+                    { icon: '💬', title: 'خدمة عملاء بالذكاء الاصطناعي', desc: 'روبوت محادثة ذكي يجيب على استفسارات العملاء على الفور بعدة لغات. يتعامل مع أسئلة المنتج وتتبع الطلبات والإرجاعات وقضايا الدعم المعقدة.' },
+                    { icon: '📦', title: 'مخزون ذكي', desc: 'يتنبأ الذكاء الاصطناعي بالطلب ويعيد طلب المخزون تلقائياً من الموردين. لا تنفد الأصناف الأكثر مبيعاً أبداً، ولا تفرط في تخزين البطيئة. مخزون مثالي في جميع الأوقات.' },
+                    { icon: '💰', title: 'تسعير ديناميكي', desc: 'تحسين السعر في الوقت الفعلي بناءً على الطلب والمنافسة ومستويات المخزون وظروف السوق. يزيد هوامش الربح مع البقاء تنافسياً.' },
+                    { icon: '📈', title: 'تحليلات المبيعات', desc: 'رؤى عميقة حول سلوك العملاء وأداء المنتج وعائد الاستثمار التسويقي واتجاهات المبيعات. يحدد الذكاء الاصطناعي الفرص وينفذ التحسينات تلقائياً.' }
+                ],
+                benefits: [
+                    'عمليات مستقلة 24/7',
+                    'زيادة عائد الاستثمار 300%',
+                    'تسويق متعدد المنصات',
+                    'دعم عملاء فوري',
+                    'صفر نفاد المخزون',
+                    'تحسين السعر الديناميكي'
+                ],
+                workflow: [
+                    { icon: '🛒', title: 'زيارة العميل', desc: 'يخصص الذكاء الاصطناعي التجربة' },
+                    { icon: '🤖', title: 'مساعدة الذكاء الاصطناعي', desc: 'يجيب على الاستفسارات على الفور' },
+                    { icon: '💳', title: 'شراء', desc: 'دفع آمن' },
+                    { icon: '📦', title: 'تنفيذ تلقائي', desc: 'يدير الذكاء الاصطناعي اللوجستيات' },
+                    { icon: '📢', title: 'تسويق', desc: 'يروج الذكاء الاصطناعي للمنتجات' }
+                ],
+                techStack: ['منصة التجارة الإلكترونية', 'ذكاء اصطناعي للغة الطبيعية', 'واجهات وسائل التواصل الاجتماعي', 'محرك التسعير الديناميكي', 'إدارة المخزون', 'أتمتة التسويق']
+            },
+            designforge: {
+                name: 'ديزاين فورج AI',
+                tagline: 'مجموعة الإبداع المؤسسية',
+                badge: 'منصة الإبداع الذكية',
+                description: 'حل تسويق وتصميم كامل مدعوم بالذكاء الاصطناعي للمؤسسات الكبيرة. إنشاء محتوى متسق مع العلامة التجارية على نطاق واسع—رسوم ونسخ وفيديوهات وحملات—أسرع 10 مرات من الطرق التقليدية مع توفير 80% في التكاليف.',
+                stats: [
+                    { value: '10x', label: 'أسرع' },
+                    { value: '80%', label: 'توفير التكلفة' },
+                    { value: '∞', label: 'النطاق' }
+                ],
+                features: [
+                    { icon: '🎨', title: 'إنشاء تصميم بالذكاء الاصطناعي', desc: 'إنشاء رسوم وبانرات ومنشورات وسائل التواصل الاجتماعي ومواد طباعة احترافية في ثوانٍ. يفهم الذكاء الاصطناعي إرشادات علامتك التجارية وينشئ تصاميم متسقة مع العلامة التجارية تلقائياً.' },
+                    { icon: '📝', title: 'إنشاء المحتوى', desc: 'يكتب الذكاء الاصطناعي نسخ تسويقي مقنع ووصف منتج وحملات بريد إلكتروني ومنشورات مدونة ونسخ إعلانات. يتكيف مع نبرة وأسلوب صوت علامتك التجارية.' },
+                    { icon: '🎬', title: 'إنتاج الفيديو', desc: 'إنشاء فيديو تلقائي مع سكريبتات وروابط صوتية ورسوم متحركة وتحرير مولدة بالذكاء الاصطناعي. إنشاء فيديوهات احترافية بدون كاميرات أو استوديوهات.' },
+                    { icon: '📱', title: 'النشر متعدد القنوات', desc: 'تغيير حجم المحتوى وتكيفه تلقائياً لكل منصة—Instagram وFacebook وLinkedIn والويب والطباعة. تصميم واحد، اختلافات لا نهائية.' },
+                    { icon: '🎯', title: 'اتساق العلامة التجارية', desc: 'يضمن الذكاء الاصطناعي أن جميع المحتويات تتبع إرشادات العلامة التجارية. فرض تلقائي للألوان والخطوط والشعارات والمسافات وقواعد الأسلوب عبر جميع المواد.' },
+                    { icon: '📊', title: 'تحليلات الأداء', desc: 'تتبع أداء الإبداع عبر القنوات. يتعلم الذكاء الاصطناعي أي التصاميم والنسخ تؤدي بشكل أفضل، ويحسّن المحتوى المستقبلي تلقائياً.' }
+                ],
+                benefits: [
+                    'إنشاء أسرع 10 مرات',
+                    '80% تقليل التكلفة',
+                    'اتساق العلامة التجارية',
+                    'قابلية التوسع اللانهائية',
+                    'تصدير متعدد القنوات',
+                    'تحسين الأداء'
+                ],
+                workflow: [
+                    { icon: '💡', title: 'ملخص', desc: 'اوصف احتياجاتك' },
+                    { icon: '🤖', title: 'إنشاء الذكاء الاصطناعي', desc: 'ينشئ اختلافات' },
+                    { icon: '✏️', title: 'تحسين', desc: 'تعديل حسب الحاجة' },
+                    { icon: '✅', title: 'موافقة', desc: 'اختر المفضلة' },
+                    { icon: '📤', title: 'نشر', desc: 'نشر تلقائي في كل مكان' }
+                ],
+                techStack: ['نماذج توليد الذكاء الاصطناعي', 'رؤية الكمبيوتر', 'توليد اللغة الطبيعية', 'تركيب الفيديو', 'محرك إرشادات العلامة التجارية', 'واجهات متعددة المنصات']
+            },
+            autoparts: {
+                name: 'أوتو بارتس AI',
+                tagline: 'منصة السيارات الذكية',
+                badge: 'حل السيارات',
+                description: 'سوق قطع غيار سيارات عالمي مدعوم بالذكاء الاصطناعي مع 8 أنظمة ذكاء اصطناعي متكاملة. ميزات مسح لوحات الأرقام OCR وفك رموز VIN وتشخيصات OBD2 ومطابقة توافق قطع الغيار بدقة 100% لأي مركبة.',
+                stats: [
+                    { value: '100%', label: 'متوافق' },
+                    { value: '8', label: 'أنظمة الذكاء الاصطناعي' },
+                    { value: '$5K+', label: 'قيمة الأداة' }
+                ],
+                features: [
+                    { icon: '📸', title: 'مسح لوحة الأرقام OCR', desc: 'التقاط صورة لأي لوحة أرقام وتحديد المركبة على الفور. يستخرج الذكاء الاصطناعي لدينا تفاصيل التسجيل ويسترجع مواصفات المركبة الكاملة.' },
+                    { icon: '🔢', title: 'فك رموز VIN', desc: 'امسح أو أدخل VIN للحصول على معلومات المركبة الكاملة—العلامة التجارية والنوع والعام ونوع المحرك وناقل الحركة والخيارات المثبتة في المصنع. قاعدة بيانات دقيقة 100%.' },
+                    { icon: '🔧', title: 'تشخيصات OBD2', desc: 'أداة تشخيص على مستوى احترافي تقرأ رموز الخطأ وتراقب أداء المحرك وتتبع كفاءة الوقود وتوفر توصيات الإصلاح.' },
+                    { icon: '✅', title: 'مطابقة التوافق', desc: 'التحقق من توافق قطع الغيار بدقة 95-100%. يعبر الذكاء الاصطناعي عن قواعد بيانات متعددة لضمان الملاءمة المثالية لمركبتك المحددة.' },
+                    { icon: '💬', title: 'مساعد محادثة بالذكاء الاصطناعي', desc: 'مساعد ذكي 24/7 يجيب على الأسئلة التقنية ويوفر أدلة التثبيت ويحل المشاكل ويوصي بقطع الغيار بناءً على احتياجاتك.' },
+                    { icon: '🏪', title: 'سوق متعدد البائعين', desc: 'قارن الأسعار من مئات الموردين المعتمدين. يجد الذكاء الاصطناعي أفضل الصفقات ويفحص المخزون ويوصي بالبائعين الموثوقين.' }
+                ],
+                benefits: [
+                    'دقة توافق 100%',
+                    '8 أنظمة ذكاء اصطناعي متكاملة',
+                    'تقنية OCR وVIN',
+                    'تشخيصات احترافية',
+                    'مقارنة متعددة البائعين',
+                    'دعم ذكاء اصطناعي 24/7'
+                ],
+                workflow: [
+                    { icon: '📱', title: 'تحديد', desc: 'امسح اللوحة أو VIN' },
+                    { icon: '🚗', title: 'بيانات المركبة', desc: 'احصل على المواصفات الكاملة' },
+                    { icon: '🔍', title: 'البحث عن قطع الغيار', desc: 'يطابق الذكاء الاصطناعي قطع الغيار المتوافقة' },
+                    { icon: '💰', title: 'مقارنة', desc: 'عرض أفضل الأسعار' },
+                    { icon: '🛒', title: 'طلب', desc: 'شراء بثقة' }
+                ],
+                techStack: ['تقنية OCR', 'واجهات قاعدة بيانات VIN', 'بروتوكول OBD2', 'رؤية الكمبيوتر', 'ذكاء توافق قطع الغيار', 'تكامل متعدد البائعين']
+            },
+            whisperlearn: {
+                name: 'ويسبر ليرن AI',
+                tagline: 'نسخ المحاضرات الذكي',
+                badge: 'منصة التقنية التعليمية',
+                description: 'منصة تعليمية ثورية مدعومة بالذكاء الاصطناعي تحول تسجيلات المحاضرات إلى ملاحظات دراسية شاملة وسهلة الفهم. يمكن للطلاب رفع ملفات صوتية تصل إلى 1 جيجابايت للنسخ الفوري وإنشاء الملاحظات الذكية باستخدام تقنية LLM المتقدمة.',
+                stats: [
+                    { value: '1GB', label: 'الحد الأقصى للرفع' },
+                    { value: '100%', label: 'الدقة' },
+                    { value: '10x', label: 'سرعة الدراسة' }
+                ],
+                features: [
+                    { icon: '🎤', title: 'معالجة صوتية عالية السعة', desc: 'رفع تسجيلات محاضرات تصل إلى 1 جيجابايت في الحجم. دعم لجميع تنسيقات الصوت الرئيسية بما في ذلك MP3 وWAV وM4A والمزيد. معالجة ساعات من المحاضرات في رفع واحد.' },
+                    { icon: '🔊', title: 'تحويل الكلام إلى نص متقدم', desc: 'مدعوم بتقنية Whisper AI المتطورة لدقة نسخ 99%+. يتعامل مع متحدثين متعددين ولهجات ومصطلحات تقنية بدقة.' },
+                    { icon: '🤖', title: 'إنشاء ملاحظات مدعوم بالذكاء الاصطناعي', desc: 'تحول نماذج اللغة الكبيرة المتقدمة النسخات الخام إلى ملاحظات محاضرة منظمة وشاملة. تنظم المحتوى إلى مواضيع وتسلط الضوء على المفاهيم الرئيسية وتنشئ ملخصات.' },
+                    { icon: '📚', title: 'استخراج المحتوى الشامل', desc: 'صفر فقدان للمعلومات—كل تفصيل مهم من المحاضرة يتم التقاطه. يحدد الذكاء الاصطناعي التعريفات والصيغ والأمثلة والنقاط الحرجة للدراسة الفعالة.' },
+                    { icon: '✨', title: 'تنسيق سهل الفهم', desc: 'يتم تنسيق الملاحظات لأقصى قابلية للقراءة مع عناوين واضحة ونقاط وفواصل وقوائم مرقمة وتدرج بصري. يتم شرح المفاهيم المعقدة بعبارات بسيطة.' },
+                    { icon: '📱', title: 'دعم متعدد اللغات', desc: 'نسخ وإنشاء ملاحظات بأكثر من 90 لغة. مثالي للطلاب الدوليين والمؤسسات التعليمية متعددة اللغات في جميع أنحاء العالم.' }
+                ],
+                benefits: [
+                    'رفع حتى 1 جيجابايت صوت',
+                    'نسخ فوري',
+                    'ملاحظات دراسية مولدة بالذكاء الاصطناعي',
+                    'صفر فقدان للمعلومات',
+                    'دعم 90+ لغة',
+                    'وصول محمول وسطح مكتب'
+                ],
+                workflow: [
+                    { icon: '📤', title: 'رفع', desc: 'اسحب وأفلت صوت المحاضرة' },
+                    { icon: '🎧', title: 'نسخ', desc: 'يحول الذكاء الاصطناعي إلى نص' },
+                    { icon: '🧠', title: 'تحليل', desc: 'تجهيز الذكاء الاصطناعي للمحتوى' },
+                    { icon: '📝', title: 'إنشاء', desc: 'إنشاء ملاحظات دراسية' },
+                    { icon: '💾', title: 'دراسة', desc: 'تحميل ومراجعة' }
+                ],
+                techStack: ['OpenAI Whisper', 'نماذج اللغة الكبيرة', 'معالجة اللغة الطبيعية', 'معالجة الصوت متعدد التنسيقات', 'تخزين السحابة', 'نسخ في الوقت الفعلي']
+            }
+        };
+
+        // Get modal data based on current language
+        function getModalData(serviceId) {
+            const lang = currentLang === 'ar' ? 'Ar' : '';
+            const data = lang === 'Ar' ? modalDataAr[serviceId] : modalData[serviceId];
+            if (!data) return null;
+            
+            // Merge with base data (colors, gradients, icons)
+            const base = modalData[serviceId];
+            return {
+                ...base,
+                ...data,
+                // Keep visual properties from base
+                badgeBg: base.badgeBg,
+                iconBg: base.iconBg,
+                color: base.color,
+                gradient: base.gradient,
+                icon: base.icon
+            };
+        }
+
+        // Modal section translations
+        const modalTranslations = {
+            en: {
+                features: 'Core Features & Capabilities',
+                benefits: 'Enterprise Benefits',
+                workflow: 'How It Works',
+                techStack: 'Technology Stack',
+                ctaTitle: 'Ready to Transform Your Enterprise?',
+                ctaDesc: 'Schedule a personalized demo with our team and discover how',
+                ctaDesc2: 'can revolutionize your operations. See the platform in action with your specific use cases.',
+                step: 'Step'
+            },
+            ar: {
+                features: 'الميزات والقدرات الأساسية',
+                benefits: 'فوائد المؤسسات',
+                workflow: 'كيف يعمل',
+                techStack: 'المجموعة التقنية',
+                ctaTitle: 'هل أنت مستعد لتحويل مؤسستك؟',
+                ctaDesc: 'حدد موعد عرض توضيحي مخصص مع فريقنا واكتشف كيف يمكن',
+                ctaDesc2: 'أن يحدث ثورة في عملياتك. شاهد المنصة في العمل مع حالات الاستخدام الخاصة بك.',
+                step: 'الخطوة'
+            }
+        };
+
         function openModal(serviceId) {
-            const service = modalData[serviceId];
+            const service = getModalData(serviceId);
             if (!service) return;
 
             const modalContainer = document.getElementById('modalContainer');
+            const t = modalTranslations[currentLang] || modalTranslations.en;
             
             const modalHTML = `
                 <div class="modal-bg-glow modal-glow-1" style="background: radial-gradient(circle, ${service.color}, transparent);"></div>
@@ -4029,7 +4394,7 @@
                     <!-- Features Section -->
                     <div class="modal-section">
                         <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
-                            Core Features & Capabilities
+                            ${t.features}
                         </h3>
                         <div class="features-grid">
                             ${service.features.map(feature => `
@@ -4049,7 +4414,7 @@
                     <!-- Enterprise Benefits -->
                     <div class="modal-section">
                         <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
-                            Enterprise Benefits
+                            ${t.benefits}
                         </h3>
                         <div class="benefits-showcase-modal">
                             ${service.benefits.map(benefit => `
@@ -4064,7 +4429,7 @@
                     <!-- Workflow Diagram -->
                     <div class="modal-section">
                         <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
-                            How It Works
+                            ${t.workflow}
                         </h3>
                         <div class="workflow-diagram">
                             <div class="workflow-steps">
@@ -4073,7 +4438,7 @@
                                         <div class="workflow-step-icon" style="--icon-bg: ${service.iconBg}; --cta-color: ${service.color}">
                                             ${step.icon}
                                         </div>
-                                        <h4>Step ${index + 1}: ${step.title}</h4>
+                                        <h4>${t.step} ${index + 1}: ${step.title}</h4>
                                         <p>${step.desc}</p>
                                     </div>
                                 `).join('')}
@@ -4084,7 +4449,7 @@
                     <!-- Technology Stack -->
                     <div class="modal-section">
                         <h3 class="modal-section-title" style="--card-gradient: ${service.gradient}">
-                            Technology Stack
+                            ${t.techStack}
                         </h3>
                         <div class="tech-stack">
                             ${service.techStack.map(tech => `
@@ -4095,8 +4460,8 @@
 
                     <!-- CTA Section -->
                     <div class="modal-cta-section">
-                        <h3>Ready to Transform Your Enterprise?</h3>
-                        <p>Schedule a personalized demo with our team and discover how ${service.name} can revolutionize your operations. See the platform in action with your specific use cases.</p>
+                        <h3>${t.ctaTitle}</h3>
+                        <p>${t.ctaDesc} ${service.name} ${t.ctaDesc2}</p>
                         <div class="modal-cta-buttons">
                             <a href="#contact" class="btn btn-primary btn-lg" onclick="closeModal()">Schedule Demo →</a>
                             <a href="#contact" class="btn btn-outline btn-lg" onclick="closeModal()">Contact Sales</a>
@@ -4171,6 +4536,799 @@
             if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
                 closeMobileMenu();
             }
+        });
+
+        // ============================================
+        // COMPREHENSIVE ARABIC TRANSLATION SYSTEM
+        // ============================================
+        
+        const translations = {
+            en: {
+                // Navigation
+                nav: {
+                    services: "Services",
+                    pipeline: "Pipeline",
+                    benefits: "Benefits",
+                    contact: "Contact",
+                    getStarted: "Get Started →"
+                },
+                // Preloader
+                preloader: "Initializing AI Systems",
+                // Hero
+                hero: {
+                    badge: "Transforming Enterprises with AI",
+                    title: "Enterprise Intelligence",
+                    titleHighlight: "Redefined",
+                    description: "NEXUS AI delivers cutting-edge artificial intelligence solutions that automate workflows, optimize operations, and unlock unprecedented efficiency for enterprises, educational institutions, and organizations across all industries.",
+                    cta1: "Explore Services →",
+                    cta2: "Schedule Demo",
+                    feature1: "Real-Time AI",
+                    feature1Desc: "Lightning-fast processing for instant results",
+                    feature2: "Enterprise Security",
+                    feature2Desc: "Bank-grade encryption and compliance",
+                    feature3: "Global Scale",
+                    feature3Desc: "Infrastructure across 25+ countries",
+                    feature4: "7 AI Platforms",
+                    feature4Desc: "Proprietary models trained on billions of data points"
+                },
+                // Services
+                services: {
+                    tag: "Our Services",
+                    title: "Seven Revolutionary AI Platforms",
+                    subtitle: "Each platform is engineered to solve complex enterprise challenges, delivering measurable results and transformative efficiency gains across industries.",
+                    learnMore: "Learn More",
+                    badge: {
+                        flagship: "Flagship",
+                        enterprise: "Enterprise",
+                        smartCity: "Smart City",
+                        aiCommerce: "AI Commerce",
+                        creative: "Creative AI",
+                        automotive: "Automotive",
+                        edtech: "EdTech AI"
+                    }
+                },
+                // Pipeline
+                pipeline: {
+                    tag: "Innovation Pipeline",
+                    title: "Next-Generation AI Platforms",
+                    subtitle: "Our R&D team is developing 10 groundbreaking AI platforms set to revolutionize additional industries. Here's what's coming next.",
+                    status: {
+                        development: "In Development",
+                        testing: "Beta Testing",
+                        research: "Research Phase"
+                    },
+                    ctaTitle: "Want to Partner on These Innovations?",
+                    ctaDesc: "We're seeking strategic partners and early adopters for our next-generation platforms. Get exclusive beta access and help shape the future of AI.",
+                    ctaButton: "Join Innovation Program →",
+                    projects: {
+                        quantummind: {
+                            name: "QuantumMind AI",
+                            category: "Predictive Analytics",
+                            desc: "Advanced predictive analytics and business intelligence platform using quantum-inspired algorithms for unprecedented forecasting accuracy."
+                        },
+                        medicalcore: {
+                            name: "MedicalCore AI",
+                            category: "Healthcare Intelligence",
+                            desc: "AI-powered healthcare platform for medical diagnosis, patient management, and treatment recommendations with 98% diagnostic accuracy."
+                        },
+                        legalvault: {
+                            name: "LegalVault AI",
+                            category: "Legal Tech",
+                            desc: "Comprehensive legal document analysis, contract review, and case law research powered by specialized legal AI models."
+                        },
+                        agrisense: {
+                            name: "AgriSense AI",
+                            category: "Smart Agriculture",
+                            desc: "IoT-powered precision agriculture platform with crop health monitoring, yield prediction, and automated irrigation management."
+                        },
+                        financeguard: {
+                            name: "FinanceGuard AI",
+                            category: "Financial Security",
+                            desc: "Real-time fraud detection, risk analysis, and compliance monitoring for financial institutions with blockchain integration."
+                        },
+                        talentforge: {
+                            name: "TalentForge AI",
+                            category: "HR Technology",
+                            desc: "AI-powered recruitment, talent assessment, and employee engagement platform with predictive performance analytics."
+                        },
+                        cybershield: {
+                            name: "CyberShield AI",
+                            category: "Cybersecurity",
+                            desc: "Advanced AI-driven threat detection, real-time security monitoring, and automated incident response for enterprise networks."
+                        },
+                        translateflow: {
+                            name: "TranslateFlow AI",
+                            category: "Language Technology",
+                            desc: "Real-time multi-language translation and communication platform for global teams with voice, text, and video support."
+                        },
+                        buildsmart: {
+                            name: "BuildSmart AI",
+                            category: "Construction Tech",
+                            desc: "AI-powered construction project management with safety monitoring, resource optimization, and automated progress tracking."
+                        },
+                        retailmind: {
+                            name: "RetailMind AI",
+                            category: "Retail Intelligence",
+                            desc: "Personalized shopping experiences with AI recommendation engine, inventory optimization, and customer behavior analytics."
+                        }
+                    }
+                },
+                // Benefits
+                benefits: {
+                    tag: "Enterprise Benefits",
+                    title: "Why Enterprises Choose NEXUS AI",
+                    subtitle: "Our AI solutions deliver transformative benefits that drive sustainable growth, operational excellence, and competitive advantage."
+                },
+                // Contact
+                contact: {
+                    tag: "Get In Touch",
+                    title: "Transform Your Enterprise Today",
+                    subtitle: "Schedule a personalized demo and discover how NEXUS AI can revolutionize your operations. Our team responds within 24 hours.",
+                    callUs: "Call Us",
+                    form: {
+                        firstName: "First Name",
+                        lastName: "Last Name",
+                        email: "Work Email",
+                        company: "Company Name",
+                        serviceInterest: "Service Interest",
+                        message: "Message",
+                        submit: "Schedule Demo →",
+                        selectService: "Select a service..."
+                    }
+                },
+                // Footer
+                footer: {
+                    description: "Pioneering the future of enterprise artificial intelligence. Seven revolutionary platforms. One transformative vision for business excellence.",
+                    services: "Services",
+                    company: "Company",
+                    resources: "Resources",
+                    copyright: "© 2025 NEXUS AI. All rights reserved. Pioneering Enterprise Intelligence."
+                },
+                // Service Cards
+                servicesList: {
+                    docusynth: {
+                        name: "DOCUSYNTH AI",
+                        tagline: "Intelligent Document Automation",
+                        description: "Enterprise e-signature platform with LLM-powered document analysis. Fully integrated with on-premises Outlook for maximum security and seamless workflow management.",
+                        benefits: [
+                            "95% reduction in document processing time",
+                            "Eliminate manual data entry errors",
+                            "Complete audit trail and compliance"
+                        ]
+                    },
+                    assetvault: {
+                        name: "ASSETVAULT AI",
+                        tagline: "Total Asset Intelligence",
+                        description: "Comprehensive AI-powered asset management platform with food resource monitoring and kitchen recipe optimization for complete operational visibility.",
+                        benefits: [
+                            "40% reduction in operational costs",
+                            "Real-time asset tracking and analytics",
+                            "Predictive maintenance alerts"
+                        ]
+                    },
+                    ecosense: {
+                        name: "ECOSENSE AI",
+                        tagline: "Smart Waste Management",
+                        description: "Revolutionary IoT-powered waste management system with AI-driven route optimization, deployed across Qatar for maximum efficiency.",
+                        benefits: [
+                            "60% improvement in route efficiency",
+                            "Zero overflow with predictive alerts",
+                            "Significant environmental impact reduction"
+                        ]
+                    },
+                    marketmind: {
+                        name: "MARKETMIND AI",
+                        tagline: "Autonomous E-Commerce",
+                        description: "Fully autonomous AI-powered e-commerce platform that operates 24/7 without human intervention. Self-managing inventory, dynamic pricing, automated marketing campaigns across all social media, and intelligent customer service.",
+                        benefits: [
+                            "24/7 autonomous operations",
+                            "300% increase in sales efficiency",
+                            "AI-powered customer service"
+                        ]
+                    },
+                    designforge: {
+                        name: "DESIGNFORGE AI",
+                        tagline: "Enterprise Creative Suite",
+                        description: "Complete AI-powered marketing and design solution generating brand-consistent content at scale with 10x faster output than traditional methods.",
+                        benefits: [
+                            "10x faster content creation",
+                            "80% reduction in creative costs",
+                            "Infinite scalability"
+                        ]
+                    },
+                    autoparts: {
+                        name: "AUTOPARTS AI",
+                        tagline: "Intelligent Automotive Platform",
+                        description: "World-class AI-powered automotive parts marketplace with OCR license plate scanning, VIN decoding, OBD2 diagnostics, and 100% accurate parts compatibility matching for any vehicle.",
+                        benefits: [
+                            "100% parts compatibility accuracy",
+                            "8 integrated AI systems",
+                            "Professional-grade diagnostics"
+                        ]
+                    },
+                    whisperlearn: {
+                        name: "WHISPERLEARN AI",
+                        tagline: "Intelligent Lecture Transcription",
+                        description: "Revolutionary AI-powered educational platform that transforms lecture recordings into comprehensive, easy-to-understand study notes. Upload up to 1GB audio files for instant transcription and intelligent note generation.",
+                        benefits: [
+                            "Upload recordings up to 1GB",
+                            "AI-generated comprehensive notes",
+                            "Zero information loss"
+                        ]
+                    }
+                },
+                // Benefits Section Items
+                benefitItems: {
+                    accelerated: {
+                        title: "Accelerated Growth",
+                        desc: "Scale operations exponentially without proportional cost increases. Our AI platforms grow with your business, handling increased workload seamlessly."
+                    },
+                    automation: {
+                        title: "Intelligent Automation",
+                        desc: "Automate complex workflows and eliminate repetitive tasks. Free your team to focus on strategic initiatives that drive business value."
+                    },
+                    insights: {
+                        title: "Data-Driven Insights",
+                        desc: "Gain actionable intelligence from your data. Make informed decisions backed by real-time analytics and predictive modeling."
+                    },
+                    cost: {
+                        title: "Cost Optimization",
+                        desc: "Reduce operational expenses by up to 40% through intelligent resource allocation and process optimization powered by AI."
+                    },
+                    security: {
+                        title: "Enterprise Security",
+                        desc: "Bank-grade security with end-to-end encryption, compliance with global standards, and on-premises deployment options."
+                    },
+                    scalability: {
+                        title: "Global Scalability",
+                        desc: "Deploy across multiple regions with low-latency infrastructure. Serve customers worldwide with consistent performance."
+                    },
+                    education: {
+                        title: "Education & Learning",
+                        desc: "Transform educational experiences with AI-powered learning tools. Help students and professionals master complex subjects faster and more effectively."
+                    },
+                    integration: {
+                        title: "Seamless Integration",
+                        desc: "Plug-and-play integration with existing systems. Our APIs work with your current infrastructure without requiring major overhauls."
+                    }
+                },
+                // Footer Links
+                footerLinks: {
+                    about: "About Us",
+                    pipeline: "Innovation Pipeline",
+                    why: "Why NEXUS AI",
+                    careers: "Careers",
+                    press: "Press Kit",
+                    contact: "Contact",
+                    docs: "Documentation",
+                    api: "API Reference",
+                    cases: "Case Studies",
+                    blog: "Blog",
+                    support: "Support"
+                }
+            },
+            ar: {
+                // Navigation
+                nav: {
+                    services: "خدماتنا",
+                    pipeline: "المشاريع المستقبلية",
+                    benefits: "الفوائد",
+                    contact: "اتصل بنا",
+                    getStarted: "ابدأ الآن →"
+                },
+                // Preloader
+                preloader: "تهيئة أنظمة الذكاء الاصطناعي",
+                // Hero
+                hero: {
+                    badge: "تحويل المؤسسات بالذكاء الاصطناعي",
+                    title: "الذكاء المؤسسي",
+                    titleHighlight: "إعادة تعريف",
+                    description: "تقدم NEXUS AI حلول ذكاء اصطناعي متطورة تعمل على أتمتة سير العمل وتحسين العمليات وإطلاق كفاءة غير مسبوقة للمؤسسات والمؤسسات التعليمية والمنظمات عبر جميع الصناعات.",
+                    cta1: "استكشف الخدمات →",
+                    cta2: "احجز عرض تجريبي",
+                    feature1: "ذكاء اصطناعي فوري",
+                    feature1Desc: "معالجة فائقة السرعة للحصول على نتائج فورية",
+                    feature2: "أمان مؤسسي",
+                    feature2Desc: "تشفير على مستوى البنوك والامتثال",
+                    feature3: "نطاق عالمي",
+                    feature3Desc: "بنية تحتية عبر 25+ دولة",
+                    feature4: "7 منصات ذكاء اصطناعي",
+                    feature4Desc: "نماذج حصرية مدربة على مليارات نقاط البيانات"
+                },
+                // Services
+                services: {
+                    tag: "خدماتنا",
+                    title: "سبع منصات ذكاء اصطناعي ثورية",
+                    subtitle: "تم تصميم كل منصة لحل التحديات المؤسسية المعقدة، وتقديم نتائج قابلة للقياس ومكاسب كفاءة تحويلية عبر الصناعات.",
+                    learnMore: "اعرف المزيد",
+                    badge: {
+                        flagship: "المنتج الرئيسي",
+                        enterprise: "مؤسسي",
+                        smartCity: "المدينة الذكية",
+                        aiCommerce: "تجارة ذكية",
+                        creative: "إبداعي",
+                        automotive: "سيارات",
+                        edtech: "تقنية تعليمية"
+                    }
+                },
+                // Pipeline
+                pipeline: {
+                    tag: "خط أنابيب الابتكار",
+                    title: "منصات الذكاء الاصطناعي من الجيل القادم",
+                    subtitle: "يعمل فريق البحث والتطوير لدينا على تطوير 10 منصات ذكاء اصطناعي رائدة من شأنها إحداث ثورة في صناعات إضافية. إليك ما سيأتي بعد ذلك.",
+                    status: {
+                        development: "قيد التطوير",
+                        testing: "اختبار تجريبي",
+                        research: "مرحلة البحث"
+                    },
+                    ctaTitle: "هل تريد الشراكة في هذه الابتكارات؟",
+                    ctaDesc: "نبحث عن شركاء استراتيجيين ومتبنين مبكرين لمنصاتنا من الجيل القادم. احصل على وصول حصري للنسخة التجريبية وساعد في تشكيل مستقبل الذكاء الاصطناعي.",
+                    ctaButton: "انضم إلى برنامج الابتكار →",
+                    projects: {
+                        quantummind: {
+                            name: "كوانتوم مايند AI",
+                            category: "التحليلات التنبؤية",
+                            desc: "منصة تحليلات تنبؤية وذكاء أعمال متقدمة تستخدم خوارزميات مستوحاة من الكم للحصول على دقة تنبؤ غير مسبوقة."
+                        },
+                        medicalcore: {
+                            name: "ميديكال كور AI",
+                            category: "ذكاء الرعاية الصحية",
+                            desc: "منصة رعاية صحية مدعومة بالذكاء الاصطناعي للتشخيص الطبي وإدارة المرضى وتوصيات العلاج بدقة تشخيصية 98%."
+                        },
+                        legalvault: {
+                            name: "ليجال فولت AI",
+                            category: "التقنية القانونية",
+                            desc: "تحليل شامل للمستندات القانونية ومراجعة العقود وبحث السوابق القضائية مدعوم بنماذج ذكاء اصطناعي قانونية متخصصة."
+                        },
+                        agrisense: {
+                            name: "أجري سينس AI",
+                            category: "الزراعة الذكية",
+                            desc: "منصة زراعة دقيقة مدعومة بإنترنت الأشياء مع مراقبة صحة المحاصيل والتنبؤ بالإنتاجية وإدارة الري التلقائية."
+                        },
+                        financeguard: {
+                            name: "فاينانس جارد AI",
+                            category: "الأمان المالي",
+                            desc: "اكتشاف الاحتيال في الوقت الفعلي وتحليل المخاطر ومراقبة الامتثال للمؤسسات المالية مع تكامل البلوك تشين."
+                        },
+                        talentforge: {
+                            name: "تالنت فورج AI",
+                            category: "تقنية الموارد البشرية",
+                            desc: "منصة توظيف وتقييم المواهب ومشاركة الموظفين مدعومة بالذكاء الاصطناعي مع تحليلات الأداء التنبؤية."
+                        },
+                        cybershield: {
+                            name: "سايبر شيلد AI",
+                            category: "الأمن السيبراني",
+                            desc: "اكتشاف التهديدات المتقدم المدعوم بالذكاء الاصطناعي ومراقبة الأمان في الوقت الفعلي والاستجابة التلقائية للحوادث لشبكات المؤسسات."
+                        },
+                        translateflow: {
+                            name: "ترانسليت فلو AI",
+                            category: "تقنية اللغة",
+                            desc: "منصة ترجمة وتواصل متعددة اللغات في الوقت الفعلي للفرق العالمية مع دعم الصوت والنص والفيديو."
+                        },
+                        buildsmart: {
+                            name: "بيلد سمارت AI",
+                            category: "تقنية البناء",
+                            desc: "إدارة مشاريع البناء المدعومة بالذكاء الاصطناعي مع مراقبة السلامة وتحسين الموارد وتتبع التقدم التلقائي."
+                        },
+                        retailmind: {
+                            name: "ريتيل مايند AI",
+                            category: "ذكاء البيع بالتجزئة",
+                            desc: "تجارب تسوق مخصصة مع محرك توصيات بالذكاء الاصطناعي وتحسين المخزون وتحليلات سلوك العملاء."
+                        }
+                    }
+                },
+                // Benefits
+                benefits: {
+                    tag: "فوائد المؤسسات",
+                    title: "لماذا تختار المؤسسات NEXUS AI",
+                    subtitle: "توفر حلول الذكاء الاصطناعي لدينا فوائد تحويلية تدفع النمو المستدام والتميز التشغيلي والميزة التنافسية."
+                },
+                // Contact
+                contact: {
+                    tag: "تواصل معنا",
+                    title: "حول مؤسستك اليوم",
+                    subtitle: "احجز عرضًا تجريبيًا مخصصًا واكتشف كيف يمكن لـ NEXUS AI إحداث ثورة في عملياتك. يستجيب فريقنا خلال 24 ساعة.",
+                    callUs: "اتصل بنا",
+                    form: {
+                        firstName: "الاسم الأول",
+                        lastName: "اسم العائلة",
+                        email: "البريد الإلكتروني للعمل",
+                        company: "اسم الشركة",
+                        serviceInterest: "اهتمام الخدمة",
+                        message: "الرسالة",
+                        submit: "احجز عرض تجريبي →",
+                        selectService: "اختر خدمة..."
+                    }
+                },
+                // Footer
+                footer: {
+                    description: "ريادة مستقبل الذكاء الاصطناعي المؤسسي. سبع منصات ثورية. رؤية تحويلية واحدة للتميز التجاري.",
+                    services: "الخدمات",
+                    company: "الشركة",
+                    resources: "الموارد",
+                    copyright: "© 2025 NEXUS AI. جميع الحقوق محفوظة. ريادة الذكاء المؤسسي."
+                },
+                // Service Cards
+                servicesList: {
+                    docusynth: {
+                        name: "دوكوسينث AI",
+                        tagline: "أتمتة المستندات الذكية",
+                        description: "منصة توقيع إلكتروني للمؤسسات مع تحليل المستندات المدعوم بالذكاء الاصطناعي. متكاملة بالكامل مع Outlook المحلي لضمان أقصى درجات الأمان وإدارة سير العمل بسلاسة.",
+                        benefits: [
+                            "95% تقليل في وقت معالجة المستندات",
+                            "إزالة أخطاء إدخال البيانات اليدوية",
+                            "مسار تدقيق كامل والامتثال"
+                        ]
+                    },
+                    assetvault: {
+                        name: "أصول فولت AI",
+                        tagline: "ذكاء الأصول الشامل",
+                        description: "منصة شاملة لإدارة الأصول المدعومة بالذكاء الاصطناعي مع مراقبة موارد الطعام وتحسين وصفات المطابخ للرؤية التشغيلية الكاملة.",
+                        benefits: [
+                            "40% تقليل في التكاليف التشغيلية",
+                            "تتبع الأصول والتحليلات في الوقت الفعلي",
+                            "تنبيهات الصيانة التنبؤية"
+                        ]
+                    },
+                    ecosense: {
+                        name: "إيكوسينس AI",
+                        tagline: "إدارة النفايات الذكية",
+                        description: "نظام إدارة نفايات ثوري مدعوم بإنترنت الأشياء مع تحسين المسارات المدعوم بالذكاء الاصطناعي، تم نشره في جميع أنحاء قطر لتحقيق أقصى كفاءة.",
+                        benefits: [
+                            "60% تحسين في كفاءة المسار",
+                            "صفر فيضان مع تنبيهات تنبؤية",
+                            "تقليل كبير في التأثير البيئي"
+                        ]
+                    },
+                    marketmind: {
+                        name: "ماركت مايند AI",
+                        tagline: "التجارة الإلكترونية المستقلة",
+                        description: "منصة تجارة إلكترونية مدعومة بالذكاء الاصطناعي تعمل بالكامل 24/7 دون تدخل بشري. إدارة المخزون الذاتية، التسعير الديناميكي، حملات تسويقية تلقائية عبر جميع وسائل التواصل الاجتماعي، وخدمة عملاء ذكية.",
+                        benefits: [
+                            "عمليات مستقلة 24/7",
+                            "300% زيادة في كفاءة المبيعات",
+                            "خدمة عملاء مدعومة بالذكاء الاصطناعي"
+                        ]
+                    },
+                    designforge: {
+                        name: "ديزاين فورج AI",
+                        tagline: "مجموعة الإبداع المؤسسية",
+                        description: "حل تسويق وتصميم كامل مدعوم بالذكاء الاصطناعي يولد محتوى متسق مع العلامة التجارية على نطاق واسع بسرعة تفوق 10 أضعاف الطرق التقليدية.",
+                        benefits: [
+                            "إنشاء محتوى أسرع 10 مرات",
+                            "80% تقليل في التكاليف الإبداعية",
+                            "قابلية التوسع اللانهائية"
+                        ]
+                    },
+                    autoparts: {
+                        name: "أوتو بارتس AI",
+                        tagline: "منصة السيارات الذكية",
+                        description: "سوق قطع غيار سيارات عالمي مدعوم بالذكاء الاصطناعي مع مسح لوحات الأرقام، فك رموز VIN، تشخيصات OBD2، ومطابقة توافق قطع الغيار بدقة 100% لأي مركبة.",
+                        benefits: [
+                            "دقة توافق قطع الغيار 100%",
+                            "8 أنظمة ذكاء اصطناعي متكاملة",
+                            "تشخيصات على مستوى احترافي"
+                        ]
+                    },
+                    whisperlearn: {
+                        name: "ويسبر ليرن AI",
+                        tagline: "نسخ المحاضرات الذكي",
+                        description: "منصة تعليمية ثورية مدعومة بالذكاء الاصطناعي تحول تسجيلات المحاضرات إلى ملاحظات دراسية شاملة وسهلة الفهم. ارفع ملفات صوتية تصل إلى 1 جيجابايت للنسخ الفوري وإنشاء الملاحظات الذكية.",
+                        benefits: [
+                            "رفع تسجيلات تصل إلى 1 جيجابايت",
+                            "ملاحظات شاملة مولدة بالذكاء الاصطناعي",
+                            "صفر فقدان للمعلومات"
+                        ]
+                    }
+                },
+                // Benefits Section Items
+                benefitItems: {
+                    accelerated: {
+                        title: "نمو متسارع",
+                        desc: "قم بتوسيع العمليات بشكل أسي دون زيادة تكاليف متناسبة. تنمو منصات الذكاء الاصطناعي الخاصة بنا مع عملك، وتتعامل مع زيادة عبء العمل بسلاسة."
+                    },
+                    automation: {
+                        title: "أتمتة ذكية",
+                        desc: "أتمتة سير العمل المعقدة وإزالة المهام المتكررة. حرر فريقك للتركيز على المبادرات الاستراتيجية التي تدفع قيمة الأعمال."
+                    },
+                    insights: {
+                        title: "رؤى قائمة على البيانات",
+                        desc: "احصل على ذكاء قابل للتنفيذ من بياناتك. اتخذ قرارات مستنيرة مدعومة بالتحليلات في الوقت الفعلي والنمذجة التنبؤية."
+                    },
+                    cost: {
+                        title: "تحسين التكلفة",
+                        desc: "قلل النفقات التشغيلية بنسبة تصل إلى 40% من خلال التخصيص الذكي للموارد وتحسين العمليات المدعوم بالذكاء الاصطناعي."
+                    },
+                    security: {
+                        title: "أمان المؤسسات",
+                        desc: "أمان على مستوى البنوك مع التشفير من طرف إلى طرف والامتثال للمعايير العالمية وخيارات النشر المحلية."
+                    },
+                    scalability: {
+                        title: "قابلية التوسع العالمية",
+                        desc: "انشر عبر مناطق متعددة مع بنية تحتية منخفضة الكمون. خدمة العملاء في جميع أنحاء العالم بأداء متسق."
+                    },
+                    education: {
+                        title: "التعليم والتعلم",
+                        desc: "حول تجارب التعليمية بأدوات التعلم المدعومة بالذكاء الاصطناعي. ساعد الطلاب والمهنيين على إتقان الموضوعات المعقدة بشكل أسرع وأكثر فعالية."
+                    },
+                    integration: {
+                        title: "تكامل سلس",
+                        desc: "تكامل سهل مع الأنظمة الموجودة. تعمل واجهات برمجة التطبيقات الخاصة بنا مع البنية التحتية الحالية دون الحاجة إلى إصلاحات كبيرة."
+                    }
+                },
+                // Footer Links
+                footerLinks: {
+                    about: "من نحن",
+                    pipeline: "خط أنابيب الابتكار",
+                    why: "لماذا NEXUS AI",
+                    careers: "الوظائف",
+                    press: "مجموعة الصحافة",
+                    contact: "اتصل بنا",
+                    docs: "التوثيق",
+                    api: "مرجع API",
+                    cases: "دراسات الحالة",
+                    blog: "المدونة",
+                    support: "الدعم"
+                }
+            }
+        };
+
+        // Current language
+        let currentLang = localStorage.getItem('language') || 'en';
+
+        // Language switcher
+        const langSwitcher = document.getElementById('langSwitcher');
+        const langText = document.getElementById('langText');
+
+        // Update language display
+        function updateLangButton() {
+            langText.textContent = currentLang === 'en' ? 'العربية' : 'English';
+        }
+
+        // Translate function
+        function translate(key, lang = currentLang) {
+            const keys = key.split('.');
+            let value = translations[lang];
+            for (const k of keys) {
+                value = value?.[k];
+            }
+            return value || key;
+        }
+
+        // Apply translations
+        function applyTranslations() {
+            // Update body direction
+            document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', currentLang);
+
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const translation = translate(key);
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translation;
+                } else if (el.tagName === 'OPTION') {
+                    if (el.value === '') {
+                        el.textContent = translation;
+                    }
+                } else {
+                    el.textContent = translation;
+                }
+            });
+
+            // Update select placeholder option
+            const selectService = document.querySelector('select[required] option[value=""]');
+            if (selectService) {
+                selectService.textContent = translate('contact.form.selectService');
+            }
+
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === '#services') link.textContent = translate('nav.services');
+                if (href === '#pipeline') link.textContent = translate('nav.pipeline');
+                if (href === '#benefits') link.textContent = translate('nav.benefits');
+                if (href === '#contact') link.textContent = translate('nav.contact');
+            });
+
+            // Update buttons
+            document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+                if (btn.textContent.includes('Get Started') || btn.textContent.includes('ابدأ')) {
+                    btn.textContent = translate('nav.getStarted');
+                }
+            });
+
+            // Update preloader
+            const preloaderText = document.querySelector('.preloader-text');
+            if (preloaderText) preloaderText.textContent = translate('preloader');
+
+            // Update hero section
+            const heroBadge = document.querySelector('.hero-badge');
+            if (heroBadge) {
+                const badgeText = heroBadge.querySelector('span.badge-pulse')?.nextSibling;
+                if (badgeText) badgeText.textContent = ' ' + translate('hero.badge');
+            }
+
+            // Update service cards
+            document.querySelectorAll('.service-card').forEach(card => {
+                const serviceId = card.getAttribute('data-service');
+                if (serviceId && translations[currentLang].servicesList?.[serviceId]) {
+                    const service = translations[currentLang].servicesList[serviceId];
+                    const nameEl = card.querySelector('.service-name');
+                    const taglineEl = card.querySelector('.service-tagline');
+                    const descEl = card.querySelector('.service-desc');
+                    
+                    if (nameEl) nameEl.textContent = service.name;
+                    if (taglineEl) taglineEl.textContent = service.tagline;
+                    if (descEl) descEl.textContent = service.description;
+                    
+                    // Update service benefits
+                    if (service.benefits) {
+                        const benefitItems = card.querySelectorAll('.service-benefits .benefit-item span');
+                        benefitItems.forEach((item, index) => {
+                            if (service.benefits[index]) {
+                                item.textContent = service.benefits[index];
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Update service badges
+            document.querySelectorAll('.service-badge').forEach(badge => {
+                const text = badge.textContent.trim();
+                if (text === 'Flagship' || text === 'المنتج الرئيسي') {
+                    badge.textContent = currentLang === 'ar' ? 'المنتج الرئيسي' : 'Flagship';
+                } else if (text === 'Enterprise' || text === 'مؤسسي') {
+                    badge.textContent = currentLang === 'ar' ? 'مؤسسي' : 'Enterprise';
+                } else if (text === 'Smart City' || text === 'المدينة الذكية') {
+                    badge.textContent = currentLang === 'ar' ? 'المدينة الذكية' : 'Smart City';
+                } else if (text === 'AI Commerce' || text === 'تجارة ذكية') {
+                    badge.textContent = currentLang === 'ar' ? 'تجارة ذكية' : 'AI Commerce';
+                } else if (text === 'Creative AI' || text === 'إبداعي') {
+                    badge.textContent = currentLang === 'ar' ? 'إبداعي' : 'Creative AI';
+                } else if (text === 'Automotive' || text === 'سيارات') {
+                    badge.textContent = currentLang === 'ar' ? 'سيارات' : 'Automotive';
+                } else if (text === 'EdTech AI' || text === 'تقنية تعليمية') {
+                    badge.textContent = currentLang === 'ar' ? 'تقنية تعليمية' : 'EdTech AI';
+                }
+            });
+
+            // Update benefits section items
+            const benefitMap = {
+                'Accelerated Growth': 'accelerated',
+                'نمو متسارع': 'accelerated',
+                'Intelligent Automation': 'automation',
+                'أتمتة ذكية': 'automation',
+                'Data-Driven Insights': 'insights',
+                'رؤى قائمة على البيانات': 'insights',
+                'Cost Optimization': 'cost',
+                'تحسين التكلفة': 'cost',
+                'Enterprise Security': 'security',
+                'أمان المؤسسات': 'security',
+                'Global Scalability': 'scalability',
+                'قابلية التوسع العالمية': 'scalability',
+                'Education & Learning': 'education',
+                'Education and Learning': 'education',
+                'التعليم والتعلم': 'education',
+                'Seamless Integration': 'integration',
+                'تكامل سلس': 'integration'
+            };
+            
+            document.querySelectorAll('.benefit-card').forEach(card => {
+                const titleEl = card.querySelector('h3, .benefit-title');
+                if (titleEl) {
+                    const titleText = titleEl.textContent.trim();
+                    const benefitKey = benefitMap[titleText];
+                    if (benefitKey && translations[currentLang].benefitItems?.[benefitKey]) {
+                        const benefit = translations[currentLang].benefitItems[benefitKey];
+                        titleEl.textContent = benefit.title;
+                        const descEl = card.querySelector('p, .benefit-desc');
+                        if (descEl) descEl.textContent = benefit.desc;
+                    }
+                }
+            });
+
+            // Update pipeline statuses
+            document.querySelectorAll('.pipeline-status').forEach(status => {
+                const text = status.textContent.trim();
+                if (text === 'In Development' || text === 'قيد التطوير') {
+                    status.textContent = translate('pipeline.status.development');
+                } else if (text === 'Beta Testing' || text === 'اختبار تجريبي') {
+                    status.textContent = translate('pipeline.status.testing');
+                } else if (text === 'Research Phase' || text === 'مرحلة البحث') {
+                    status.textContent = translate('pipeline.status.research');
+                }
+            });
+
+            // Update pipeline project descriptions
+            const pipelineProjectMap = {
+                'QuantumMind AI': 'quantummind',
+                'كوانتوم مايند AI': 'quantummind',
+                'MedicalCore AI': 'medicalcore',
+                'ميديكال كور AI': 'medicalcore',
+                'LegalVault AI': 'legalvault',
+                'ليجال فولت AI': 'legalvault',
+                'AgriSense AI': 'agrisense',
+                'أجري سينس AI': 'agrisense',
+                'FinanceGuard AI': 'financeguard',
+                'فاينانس جارد AI': 'financeguard',
+                'TalentForge AI': 'talentforge',
+                'تالنت فورج AI': 'talentforge',
+                'CyberShield AI': 'cybershield',
+                'سايبر شيلد AI': 'cybershield',
+                'TranslateFlow AI': 'translateflow',
+                'ترانسليت فلو AI': 'translateflow',
+                'BuildSmart AI': 'buildsmart',
+                'بيلد سمارت AI': 'buildsmart',
+                'RetailMind AI': 'retailmind',
+                'ريتيل مايند AI': 'retailmind'
+            };
+
+            document.querySelectorAll('.pipeline-card').forEach(card => {
+                const nameEl = card.querySelector('h3');
+                if (nameEl) {
+                    const nameText = nameEl.textContent.trim();
+                    const projectKey = pipelineProjectMap[nameText];
+                    if (projectKey && translations[currentLang].pipeline?.projects?.[projectKey]) {
+                        const project = translations[currentLang].pipeline.projects[projectKey];
+                        nameEl.textContent = project.name;
+                        const categoryEl = card.querySelector('.pipeline-category');
+                        if (categoryEl) categoryEl.textContent = project.category;
+                        const descEl = card.querySelector('.pipeline-desc');
+                        if (descEl) descEl.textContent = project.desc;
+                    }
+                }
+            });
+
+            // Update footer links
+            const footerLinkMap = {
+                'About Us': 'about',
+                'من نحن': 'about',
+                'Innovation Pipeline': 'pipeline',
+                'خط أنابيب الابتكار': 'pipeline',
+                'Why NEXUS AI': 'why',
+                'لماذا NEXUS AI': 'why',
+                'Careers': 'careers',
+                'الوظائف': 'careers',
+                'Press Kit': 'press',
+                'مجموعة الصحافة': 'press',
+                'Contact': 'contact',
+                'اتصل بنا': 'contact',
+                'Documentation': 'docs',
+                'التوثيق': 'docs',
+                'API Reference': 'api',
+                'مرجع API': 'api',
+                'Case Studies': 'cases',
+                'دراسات الحالة': 'cases',
+                'Blog': 'blog',
+                'المدونة': 'blog',
+                'Support': 'support',
+                'الدعم': 'support'
+            };
+            
+            document.querySelectorAll('.footer-links a, .footer-company a, .footer-resources a').forEach(link => {
+                const text = link.textContent.trim();
+                const linkKey = footerLinkMap[text];
+                if (linkKey && translations[currentLang].footerLinks?.[linkKey]) {
+                    link.textContent = translations[currentLang].footerLinks[linkKey];
+                }
+            });
+
+            updateLangButton();
+            localStorage.setItem('language', currentLang);
+        }
+
+        // Toggle language
+        langSwitcher.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            applyTranslations();
+        });
+
+        // Initialize translations on load
+        window.addEventListener('load', () => {
+            applyTranslations();
         });
     </script>
 </body>

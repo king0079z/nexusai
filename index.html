@@ -2050,26 +2050,7 @@
             z-index: 1;
         }
 
-        .modal-video-responsive {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 30px;
-        }
-
-        .modal-video-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .modal-video-wrapper video,
-        .modal-video-wrapper iframe {
+        .modal-video-wrapper video {
             width: 100%;
             height: auto;
             min-height: 500px;
@@ -2080,27 +2061,15 @@
             border: none;
         }
 
+        /* Responsive video container for iframes */
+        .modal-video-wrapper > div {
+            width: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
         .modal-video-wrapper iframe {
-            aspect-ratio: 16 / 9;
-        }
-
-        .modal-video-fallback {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .modal-video-fallback a {
-            color: #00D9A5;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .modal-video-fallback a:hover {
-            color: #00B388;
-            transform: translateX(5px);
+            border: none;
         }
 
         .modal-video-title {
@@ -2615,41 +2584,22 @@
                 margin-bottom: 50px;
             }
 
-            .modal-video-section {
-                margin-bottom: 40px;
-                margin-top: 20px;
-            }
-
             .modal-video-wrapper {
                 border-radius: 20px;
-                max-width: 100%;
             }
 
-            .modal-video-responsive {
-                padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio on mobile */
+            .modal-video-wrapper video {
                 border-radius: 20px;
+                min-height: 300px;
             }
 
-            .modal-video-wrapper video,
-            .modal-video-wrapper iframe {
+            .modal-video-wrapper > div {
                 border-radius: 20px;
             }
 
             .modal-video-title {
                 font-size: 1.4rem;
                 margin-bottom: 20px;
-            }
-
-            .modal-video-fallback {
-                margin-top: 15px;
-            }
-
-            .modal-video-fallback a {
-                font-size: 0.9rem;
-                padding: 10px 20px;
-                background: rgba(0,217,165,0.1);
-                border-radius: 12px;
-                border: 1px solid rgba(0,217,165,0.3);
             }
 
             .modal-section-title {
@@ -4553,10 +4503,11 @@
                     <!-- Video Section -->
                     <div class="modal-video-section">
                         <div class="modal-video-wrapper">
-                            <!-- YouTube Embed with Responsive Container -->
-                            <div class="modal-video-responsive">
+                            <!-- YouTube Embed with Error Handling -->
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 30px; background: #000;">
                                 <iframe 
-                                    src="https://www.youtube.com/embed/n4Ggu0UHXMI?enablejsapi=1&origin=${window.location.origin}"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                    src="https://www.youtube.com/embed/n4Ggu0UHXMI?enablejsapi=1&origin=${encodeURIComponent(window.location.origin || window.location.hostname)}"
                                     title="Autonautics AI Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     allowfullscreen
@@ -4564,8 +4515,9 @@
                                 </iframe>
                             </div>
                             <!-- Fallback Link -->
-                            <div class="modal-video-fallback">
-                                <a href="https://www.youtube.com/watch?v=n4Ggu0UHXMI" target="_blank" rel="noopener noreferrer">
+                            <div style="text-align: center; margin-top: 15px;">
+                                <a href="https://www.youtube.com/watch?v=n4Ggu0UHXMI" target="_blank" rel="noopener noreferrer" 
+                                   style="color: #00D9A5; text-decoration: none; font-weight: 600;">
                                     Watch on YouTube ↗
                                 </a>
                             </div>

@@ -14,7 +14,7 @@ NEXUS AI currently operates **seven revolutionary AI platforms**, each addressin
 
 2. **AssetVault AI** - Comprehensive AI-powered asset management platform with real-time tracking, predictive maintenance, and specialized modules for food resource monitoring and kitchen optimization for restaurant operations.
 
-3. **EcoSense AI** - IoT-powered smart waste management system deployed across Qatar with AI-driven route optimization, achieving 60% efficiency improvements and zero overflow events through predictive analytics.
+3. **Autonautics AI** - IoT-powered smart waste management system deployed across Qatar with AI-driven route optimization, achieving 60% efficiency improvements and zero overflow events through predictive analytics.
 
 4. **MarketMind AI** - Fully autonomous e-commerce platform operating 24/7 with self-managing inventory, dynamic pricing, automated marketing campaigns across all social media channels, and intelligent customer service.
 
@@ -69,7 +69,7 @@ We are committed to establishing Qatar as a global hub for AI innovation, contri
 
 ## Short Version (For Forms with Character Limits - Under 1000 Characters)
 
-**NEXUS AI** is a vertically integrated AI company developing enterprise-grade platforms that automate and optimize business operations. We operate seven revolutionary solutions: DocuSynth AI (document automation), AssetVault AI (asset management), EcoSense AI (smart waste systems deployed in Qatar), MarketMind AI (autonomous e-commerce), DesignForge AI (creative AI), AutoParts AI (automotive intelligence), and WhisperLearn AI (educational technology). Our R&D pipeline includes ten additional platforms across healthcare, legal tech, finance, and cybersecurity. With 150+ AI experts, 340% average client ROI, 99.9% uptime SLA, and enterprise-grade security, NEXUS AI is positioned to establish Qatar as a global AI innovation hub while contributing to economic diversification and knowledge-based economy transformation.
+**NEXUS AI** is a vertically integrated AI company developing enterprise-grade platforms that automate and optimize business operations. We operate seven revolutionary solutions: DocuSynth AI (document automation), AssetVault AI (asset management), Autonautics AI (smart waste systems deployed in Qatar), MarketMind AI (autonomous e-commerce), DesignForge AI (creative AI), AutoParts AI (automotive intelligence), and WhisperLearn AI (educational technology). Our R&D pipeline includes ten additional platforms across healthcare, legal tech, finance, and cybersecurity. With 150+ AI experts, 340% average client ROI, 99.9% uptime SLA, and enterprise-grade security, NEXUS AI is positioned to establish Qatar as a global AI innovation hub while contributing to economic diversification and knowledge-based economy transformation.
 
 ---
 

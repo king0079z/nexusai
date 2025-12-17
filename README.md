@@ -49,7 +49,7 @@ vercel --prod
 
 ## 🎨 Features
 
-- **7 AI Platforms**: DocuSynth, AssetVault, EcoSense, MarketMind, DesignForge, AutoParts, WhisperLearn
+- **7 AI Platforms**: DocuSynth, AssetVault, Autonautics, MarketMind, DesignForge, AutoParts, WhisperLearn
 - **10 Future Projects**: In development pipeline
 - **3D Animations**: Three.js powered interactive elements
 - **Mobile Responsive**: Beautiful hamburger menu for mobile devices

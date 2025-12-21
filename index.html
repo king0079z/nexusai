@@ -2911,7 +2911,7 @@
                     </svg>
                 </div>
                 <div class="service-card-content">
-                    <h3 class="service-name">DOCUSYNTH AI</h3>
+                    <h3 class="service-name">SignaFlow Pro</h3>
                     <p class="service-tagline">Intelligent Document Automation</p>
                     <p class="service-desc">
                         Enterprise e-signature platform with LLM-powered document analysis. Fully integrated with on-premises Outlook for maximum security and seamless workflow management.
@@ -3505,7 +3505,7 @@
                     <label data-i18n="contact.form.serviceInterest">Service Interest</label>
                     <select required>
                         <option value="" data-i18n="contact.form.selectService">Select a service...</option>
-                        <option>DocuSynth AI - Document Automation</option>
+                        <option>SignaFlow Pro - Document Automation</option>
                         <option>AssetVault AI - Asset Management</option>
                         <option>Autonautics AI - Waste Management</option>
                         <option>MarketMind AI - E-Commerce</option>
@@ -3569,7 +3569,7 @@
             <div class="footer-column">
                 <h4 data-i18n="footer.services">Services</h4>
                 <ul>
-                    <li><a href="#services">DocuSynth AI</a></li>
+                    <li><a href="#services">SignaFlow Pro</a></li>
                     <li><a href="#services">AssetVault AI</a></li>
                     <li><a href="#services">Autonautics AI</a></li>
                     <li><a href="#services">MarketMind AI</a></li>
@@ -3842,7 +3842,7 @@
         // Modal Management
         const modalData = {
             docusynth: {
-                name: 'DOCUSYNTH AI',
+                name: 'SignaFlow Pro',
                 tagline: 'Intelligent Document Automation',
                 badge: 'Flagship Product',
                 badgeBg: 'linear-gradient(135deg, #00F5D4, #00A896)',
@@ -4524,6 +4524,31 @@
                         </div>
                     </div>
                     ` : ''}
+                    ${serviceId === 'docusynth' ? `
+                    <!-- Video Section -->
+                    <div class="modal-video-section">
+                        <div class="modal-video-wrapper">
+                            <!-- YouTube Embed with Error Handling -->
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 30px; background: #000;">
+                                <iframe 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                                    src="https://www.youtube.com/embed/B7wTFTx3B3E?enablejsapi=1&origin=${encodeURIComponent(window.location.origin || window.location.hostname)}"
+                                    title="SignaFlow Pro Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            <!-- Fallback Link -->
+                            <div style="text-align: center; margin-top: 15px;">
+                                <a href="https://www.youtube.com/watch?v=B7wTFTx3B3E" target="_blank" rel="noopener noreferrer" 
+                                   style="color: #00F5D4; text-decoration: none; font-weight: 600;">
+                                    Watch on YouTube ↗
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
                     
                     <!-- Features Section -->
                     <div class="modal-section">
@@ -4821,7 +4846,7 @@
                 // Service Cards
                 servicesList: {
                     docusynth: {
-                        name: "DOCUSYNTH AI",
+                        name: "SignaFlow Pro",
                         tagline: "Intelligent Document Automation",
                         description: "Enterprise e-signature platform with LLM-powered document analysis. Fully integrated with on-premises Outlook for maximum security and seamless workflow management.",
                         benefits: [
